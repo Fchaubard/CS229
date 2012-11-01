@@ -26,8 +26,6 @@ public class Position {
         this.x = x;
     }
 
-
-
     public int getY() {
         return y;
     }
