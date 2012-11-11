@@ -1,3 +1,5 @@
+import java.util.Random;
+
 /**
  * Created with IntelliJ IDEA.
  * User: francoischaubard
@@ -9,49 +11,89 @@
 public class Soldier {
 
     //Attributes
-    private static int identifier;
-    private static int teamIdentifier;
-    private static int numberOfFriends;
-    private static int numberOfFoes;
+    private  int identifier;
+    private  int teamIdentifier;
+    private  int numberOfFriends;
+    private  int numberOfFoes;
 
 
-    public Soldier(int identifier, int teamIdentifier, int numberOfFriends, int numberOfFoes) {
-        Soldier.setIdentifier(identifier);
-        Soldier.setTeamIdentifier(teamIdentifier);
-        Soldier.setNumberOfFriends(numberOfFriends);
-        Soldier.setNumberOfFoes(numberOfFoes);
+    private Position position;
+
+    public Soldier(int identifier, int teamIdentifier, int numberOfFriends, int numberOfFoes, Position position) {
+        this.setIdentifier(identifier);
+        this.setTeamIdentifier(teamIdentifier);
+        this.setPosition(position);
+        this.setNumberOfFriends(numberOfFriends);
+        this.setNumberOfFoes(numberOfFoes);
     }
 
-    public static int getIdentifier() {
+    public Position move(){
+
+        // TODO Decision Process happens here
+        Random random = new Random(123);
+        int moveNumber = random.nextInt(4);
+
+        switch(moveNumber) {
+            case 0:    // Attack
+                // TODO
+                break;
+            case 1:   // Go left
+                // TODO
+                break;
+            case 2:   // Go right
+                // TODO
+                break;
+            case 3:  // Move Forward
+                // TODO
+                break;
+            default: System.out.print("Invalid move");
+                break;
+
+        }
+
+        // Submit the newPosition
+        Position newPosition = this.position;
+        return newPosition;
+    }
+
+    public Position getPosition() {
+        return position;
+    }
+
+    public void setPosition(Position position) {
+        this.position = position;
+    }
+
+    public  int getIdentifier() {
         return identifier;
     }
 
-    public static void setIdentifier(int identifier) {
-        Soldier.identifier = identifier;
+    public  void setIdentifier(int identifier) {
+        this.identifier = identifier;
     }
 
-    public static int getTeamIdentifier() {
+    public  int getTeamIdentifier() {
         return teamIdentifier;
     }
 
-    public static void setTeamIdentifier(int teamIdentifier) {
-        Soldier.teamIdentifier = teamIdentifier;
+    public  void setTeamIdentifier(int teamIdentifier) {
+        this.teamIdentifier = teamIdentifier;
     }
 
-    public static int getNumberOfFriends() {
+    public  int getNumberOfFriends() {
         return numberOfFriends;
     }
 
-    public static void setNumberOfFriends(int numberOfFriends) {
-        Soldier.numberOfFriends = numberOfFriends;
+    public  void setNumberOfFriends(int numberOfFriends) {
+        this.numberOfFriends = numberOfFriends;
     }
 
-    public static int getNumberOfFoes() {
+    public  int getNumberOfFoes() {
         return numberOfFoes;
     }
 
-    public static void setNumberOfFoes(int numberOfFoes) {
-        Soldier.numberOfFoes = numberOfFoes;
+    public  void setNumberOfFoes(int numberOfFoes) {
+        this.numberOfFoes = numberOfFoes;
     }
 
 

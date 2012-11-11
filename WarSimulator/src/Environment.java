@@ -1,3 +1,7 @@
+import java.util.ArrayList;
+import java.util.Set;
+import java.util.TreeSet;
+
 /**
  * Created with IntelliJ IDEA.
  * User: francoischaubard
@@ -8,36 +12,121 @@
 public class Environment {
     private static int numberOfTeams;
     private static int numberOfSoldiersPerTeam;
-    private static Position[] positions= new Position[numberOfSoldiersPerTeam*numberOfTeams]; // (Matrix #teams x #soldiersperteam)
-    private static int currentStep;
+    private Soldier[] soldiers= new Soldier[numberOfSoldiersPerTeam*numberOfTeams]; // (Matrix #teams x #soldiersperteam)
+    private int currentStep;
     private static int stepLimit;
     private static int sizeOfEnvironmentX;
     private static int sizeOfEnvironmentY;
 
-    public Environment(int numberOfTeams, int numberOfSoldiersPerTeam, Position[] initial_Positions, int stepLimit, int sizeOfEnvironmentX, int sizeOfEnvironmentY) {
-        Environment.setPositions(initial_Positions);
+    public Environment(int numberOfTeams, int numberOfSoldiersPerTeam, Soldier[] initial_Soldiers, int stepLimit, int sizeOfEnvironmentX, int sizeOfEnvironmentY) {
+        this.setCurrentStep(-1);
+        this.setSoldiers(initial_Soldiers);
         Environment.setNumberOfTeams(numberOfTeams);
         Environment.setNumberOfSoldiersPerTeam(numberOfSoldiersPerTeam);
         Environment.setStepLimit(stepLimit);
         Environment.setSizeOfEnvironmentX(sizeOfEnvironmentX);
         Environment.setSizeOfEnvironmentY(sizeOfEnvironmentY);
+    }
+
+    public void initializeGame(){
+
+        Environment.getNumberOfSoldiersPerTeam();
+
+        for(int j=0; j<numberOfTeams; j++){
+            for(int i=0; i<numberOfSoldiersPerTeam; i++){
+
+                //TODO Set the positions for team 0
+                if(j==0){
+                   soldiers[i].setPosition(new Position(0,i*sizeOfEnvironmentY,0));
+                }else{
+                   soldiers[i].setPosition(new Position(sizeOfEnvironmentX,i*sizeOfEnvironmentY,180));
+                }
+
+            }
+        }
+        this.setCurrentStep(0);
+    }
+
+    public void stepGame(){
+
+        // Step game until step limit
+        if (currentStep==stepLimit){
+            //error
+            System.out.print("game went longer then intended");
+            return;
+        }
+
+        // Step the game by 1
+        this.setCurrentStep(this.getCurrentStep()+1);
+
+        // TODO Decide if there were any successful attacks
+
+        // TODO Give rewards or hurt
+
+        // Let each decide where to move
+        ArrayList<Position> moveList = new ArrayList<Position>();
+
+        for (Soldier a : soldiers){
+            moveList.add(a.move());
+        }
+
+        // Do move rectification
+        moveRectification(moveList);
+
+        // Commit Moves
+        for (int i=0; i<soldiers.length; i++){
+
+            soldiers[i].setPosition(moveList.get(i));
+        }
+
+
 
     }
 
-    public static void initializeGame(){
+    public ArrayList moveRectification(ArrayList moveList){
+        ArrayList newMoveList = moveList;
 
+        if(arePositionsUnique(moveList)){
+            newMoveList = moveList;
+        }
+        else{
+            //TODO a bunch of move rectification crap
+
+        }
+
+        return newMoveList;
     }
 
-    public static void stepGame(){
+    public boolean arePositionsUnique(ArrayList<Position> list){
+        boolean positionsArentEqual=false;
+        Set<Integer> xPos = new TreeSet<Integer>();
+        Set<Integer> yPos = new TreeSet<Integer>();
 
+        // ensure of the positions are equal by putting them into a set
+        for (int i=0; i<list.size(); i++){
+            Position position = list.get(i);
+
+            try{
+                xPos.add(position.getX());
+                yPos.add(position.getY());
+            }
+            catch(Exception e){
+                positionsArentEqual = false;
+                break;
+            }
+
+        }
+        if(yPos.size()==list.size()){
+            positionsArentEqual = true;
+        }
+
+          return positionsArentEqual;
     }
 
-    public static void stopGame(){
 
-    }
-
-    public static void resetGame(){
-
+    public void resetGame(){
+        //TODO save off data and outcome for the game
+        this.initializeGame();
     }
 
     public static int getNumberOfTeams() {
@@ -56,20 +145,22 @@ public class Environment {
         Environment.numberOfSoldiersPerTeam = numberOfSoldiersPerTeam;
     }
 
-    public static Position[] getPositions() {
-        return positions;
+    public Soldier[] getSoldiers() {
+        return soldiers;
+    }
+    public Soldier getSoldier(int i) {
+        return soldiers[i];
+    }
+    public void setSoldiers(Soldier[] soldiers) {
+        this.soldiers = soldiers;
     }
 
-    public static void setPositions(Position[] positions) {
-        Environment.positions = positions;
-    }
-
-    public static int getCurrentStep() {
+    public int getCurrentStep() {
         return currentStep;
     }
 
-    public static void setCurrentStep(int currentStep) {
-        Environment.currentStep = currentStep;
+    public void setCurrentStep(int currentStep) {
+        this.currentStep = currentStep;
     }
 
     public static int getStepLimit() {
@@ -95,4 +186,5 @@ public class Environment {
     public static void setSizeOfEnvironmentY(int sizeOfEnvironmentY) {
         Environment.sizeOfEnvironmentY = sizeOfEnvironmentY;
     }
+
 }

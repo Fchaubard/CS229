@@ -7,9 +7,9 @@
  */
 public class Position {
     // attributes
-    private static int x;
-    private static int y;
-    private static int angle;
+    private  int x;
+    private  int y;
+    private  int angle;
 
     public Position(int x, int y, int angle) {
         this.x = x;
