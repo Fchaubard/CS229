@@ -31,20 +31,41 @@ public class Soldier {
 
         // TODO Decision Process happens here
         Random random = new Random(123);
-        int moveNumber = random.nextInt(4);
+        int moveNumber = random.nextInt(4);  // gives either a 0, 1, 2, or 3
+
+        Position newPosition = this.position;
 
         switch(moveNumber) {
             case 0:    // Attack
-                // TODO
+                // Dont change position
+
                 break;
             case 1:   // Go left
-                // TODO
+
+                newPosition.setAngle(newPosition.getAngle()+90);
                 break;
             case 2:   // Go right
-                // TODO
+
+                newPosition.setAngle(newPosition.getAngle()-90);
                 break;
             case 3:  // Move Forward
-                // TODO
+
+                switch(newPosition.getAngle()) {
+                    case 0:
+                        newPosition.setX(newPosition.getX()+1);
+                        break;
+                    case 90:
+                        newPosition.setY(newPosition.getY()+1);
+                        break;
+                    case 180:
+                        newPosition.setX(newPosition.getX()-1);
+                        break;
+                    case 270:
+                        newPosition.setY(newPosition.getY()-1);
+                        break;
+                    default:
+                        System.out.print("not a valid angle");
+                }
                 break;
             default: System.out.print("Invalid move");
                 break;
@@ -52,7 +73,6 @@ public class Soldier {
         }
 
         // Submit the newPosition
-        Position newPosition = this.position;
         return newPosition;
     }
 
