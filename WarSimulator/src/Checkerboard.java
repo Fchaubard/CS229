@@ -7,7 +7,7 @@ public class Checkerboard {
     private static Environment environment;
     private static int numberOfTeams=2;
     private static int numberOfSoldiersPerTeam=2;
-    private static int stepLimit=30;
+    private static int stepLimit=3000;
     private static int sizeOfEnvironmentX=10;
     private static int sizeOfEnvironmentY=10;
     private static int numberOfGames=10;

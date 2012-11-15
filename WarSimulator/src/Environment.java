@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -152,41 +153,58 @@ public class Environment {
     }
 
     public ArrayList moveRectification(ArrayList moveList){
-        ArrayList newMoveList = moveList;
 
-        if(arePositionsUnique(moveList)){
-            newMoveList = moveList;
-        }
-        else{
-            //TODO a bunch of move rectification crap
 
-        }
+        ArrayList newMoveList = arePositionsUnique(moveList);
+
 
         return newMoveList;
     }
+    public boolean arePositionsEqual(Position a,Position b){
+        if((a.getX()==b.getX())&&(a.getY()==b.getY())){
+            return true;
+        }
 
-    public boolean arePositionsUnique(ArrayList<Position> list){
+        return false;
+    }
+    public ArrayList arePositionsUnique(ArrayList<Position> list){
         boolean positionsArentEqual=false;
         Set<Integer> xPos = new TreeSet<Integer>();
         Set<Integer> yPos = new TreeSet<Integer>();
+        ArrayList<Position> rectifiedlist = list;
 
         // ensure of the positions are equal by putting them into a set
         for (int i=0; i<list.size(); i++){
-            Position position = list.get(i);
+            for (int j=0; j<xPos.size(); j++){
+                Position ai = list.get(i);
+                Position aj = list.get(j);
 
-            try{
-                xPos.add(position.getX());
-                yPos.add(position.getY());
-                positionsArentEqual = true;
-            }
-            catch(Exception e){
-                positionsArentEqual = false;
-                break;
+                if(arePositionsEqual(ai,aj)){
+
+                    System.out.printf("conflict with S%d and S%d \n\n\n\n\n\n",i,j);
+                    Random random = new Random();
+                    int whogetsit = random.nextInt(1);  // gives either a 0, 1, 2, or 3
+                    if(whogetsit==0){
+                        // Randomly give it to a
+                        rectifiedlist.set(i,ai);
+                        rectifiedlist.set(j,getSoldier(j).getPosition());   //keep at current position
+                    }else if(whogetsit==1){
+                        // Randomly give it to b
+                        rectifiedlist.set(j,aj);
+                        rectifiedlist.set(i,getSoldier(i).getPosition());  //keep at current position
+                    }else{
+                        System.out.print("issue with random");
+                    }
+
+
+
+                }
+
             }
 
         }
 
-        return positionsArentEqual;
+        return rectifiedlist;
     }
 
 
