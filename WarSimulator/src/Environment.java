@@ -36,10 +36,10 @@ public class Environment {
             for(int i=0; i<numberOfSoldiersPerTeam; i++){
 
                 //TODO Set the positions for team 0
-                if(j==0){
-                   soldiers[i].setPosition(new Position(0,i*sizeOfEnvironmentY,0));
+                if(soldiers[i].getTeamIdentifier()==0){
+                   soldiers[i].setPosition(new Position(0,sizeOfEnvironmentY-i-1,0));
                 }else{
-                   soldiers[i].setPosition(new Position(sizeOfEnvironmentX,i*sizeOfEnvironmentY,180));
+                   soldiers[i].setPosition(new Position(sizeOfEnvironmentX-1,sizeOfEnvironmentY-i-1,180));
                 }
 
             }
@@ -74,53 +74,53 @@ public class Environment {
                             case 0:
                                 //check -90 180 90
                                 if (((a.getPosition().getY()-1)==b.getPosition().getY())&&(b.getPosition().getAngle()==90)){  //-90
-                                    System.out.printf("Soldier %i hurt soldier %i",b.getIdentifier(),a.getIdentifier());
+                                    System.out.printf("Soldier %d hurt soldier %d\n",b.getIdentifier(),a.getIdentifier());
                                 }else if (((a.getPosition().getX()-1)==b.getPosition().getX())&&(b.getPosition().getAngle()==0)){  //180
-                                    System.out.printf("Soldier %i hurt soldier %i",b.getIdentifier(),a.getIdentifier());
+                                    System.out.printf("Soldier %d hurt soldier %d\n",b.getIdentifier(),a.getIdentifier());
                                 }else if (((a.getPosition().getY()+1)==b.getPosition().getY())&&(b.getPosition().getAngle()==270)){  //90
-                                    System.out.printf("Soldier %i hurt soldier %i",b.getIdentifier(),a.getIdentifier());
+                                    System.out.printf("Soldier %d hurt soldier %d\n",b.getIdentifier(),a.getIdentifier());
                                 }else{
-                                    System.out.print("close but no cigar");
+                                   // System.out.print("close but no cigar\n");
                                 }
                                 break;
                             case 90:
                                 //check -90 180 90
                                 if (((a.getPosition().getX()+1)==b.getPosition().getX())&&(b.getPosition().getAngle()==180)){  //-90
-                                    System.out.printf("Soldier %i hurt soldier %i",b.getIdentifier(),a.getIdentifier());
+                                    System.out.printf("Soldier %d hurt soldier %d\n",b.getIdentifier(),a.getIdentifier());
                                 }else if (((a.getPosition().getY()-1)==b.getPosition().getY())&&(b.getPosition().getAngle()==90)){  //180
-                                    System.out.printf("Soldier %i hurt soldier %i",b.getIdentifier(),a.getIdentifier());
+                                    System.out.printf("Soldier %d hurt soldier %d\n",b.getIdentifier(),a.getIdentifier());
                                 }else if (((a.getPosition().getX()-1)==b.getPosition().getX())&&(b.getPosition().getAngle()==0)){  //90
-                                    System.out.printf("Soldier %i hurt soldier %i",b.getIdentifier(),a.getIdentifier());
+                                    System.out.printf("Soldier %d hurt soldier %d\n",b.getIdentifier(),a.getIdentifier());
                                 }else{
-                                    System.out.print("close but no cigar");
+                                    //System.out.print("close but no cigar\n");
                                 }
                                 break;
                             case 180:
                                 //check -90 180 90
                                 if (((a.getPosition().getY()+1)==b.getPosition().getY())&&(b.getPosition().getAngle()==270)){  //-90
-                                    System.out.printf("Soldier %i hurt soldier %i",b.getIdentifier(),a.getIdentifier());
+                                    System.out.printf("Soldier %d hurt soldier %d\n",b.getIdentifier(),a.getIdentifier());
                                 }else if (((a.getPosition().getX()+1)==b.getPosition().getX())&&(b.getPosition().getAngle()==180)){  //180
-                                    System.out.printf("Soldier %i hurt soldier %i",b.getIdentifier(),a.getIdentifier());
+                                    System.out.printf("Soldier %d hurt soldier %d\n",b.getIdentifier(),a.getIdentifier());
                                 }else if (((a.getPosition().getY()-1)==b.getPosition().getY())&&(b.getPosition().getAngle()==90)){  //90
-                                    System.out.printf("Soldier %i hurt soldier %i",b.getIdentifier(),a.getIdentifier());
+                                    System.out.printf("Soldier %d hurt soldier %d\n",b.getIdentifier(),a.getIdentifier());
                                 }else{
-                                    System.out.print("close but no cigar");
+                                   // System.out.print("close but no cigar\n");
                                 }
                                 break;
                             case 270:
                                 //check -90 180 90
                                 if (((a.getPosition().getX()-1)==b.getPosition().getX())&&(b.getPosition().getAngle()==0)){  //-90
-                                    System.out.printf("Soldier %i hurt soldier %i",b.getIdentifier(),a.getIdentifier());
+                                    System.out.printf("Soldier %d hurt soldier %d\n",b.getIdentifier(),a.getIdentifier());
                                 }else if (((a.getPosition().getY()+1)==b.getPosition().getY())&&(b.getPosition().getAngle()==270)){  //180
-                                    System.out.printf("Soldier %i hurt soldier %i",b.getIdentifier(),a.getIdentifier());
+                                    System.out.printf("Soldier %d hurt soldier %d\n",b.getIdentifier(),a.getIdentifier());
                                 }else if (((a.getPosition().getX()+1)==b.getPosition().getX())&&(b.getPosition().getAngle()==180)){  //90
-                                    System.out.printf("Soldier %i hurt soldier %i",b.getIdentifier(),a.getIdentifier());
+                                    System.out.printf("Soldier %d hurt soldier %d\n",b.getIdentifier(),a.getIdentifier());
                                 }else{
-                                    System.out.print("close but no cigar");
+                                    //System.out.print("close but no cigar\n");
                                 }
                                 break;
                             default:
-                                System.out.print("someones got a wrong angle");
+                                System.out.print("someones got a wrong angle\n");
 
                         }
                     }
@@ -135,7 +135,7 @@ public class Environment {
         ArrayList<Position> moveList = new ArrayList<Position>();
 
         for (Soldier a : soldiers){
-            moveList.add(a.move());
+            moveList.add(a.move(sizeOfEnvironmentX,sizeOfEnvironmentY));
         }
 
         // Do move rectification
