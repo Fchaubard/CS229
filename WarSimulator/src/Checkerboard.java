@@ -12,7 +12,7 @@ public class Checkerboard {
     private static int sizeOfEnvironmentY=10;
     private static int numberOfGames=10;
     private static boolean gameOver=false;
-    private static boolean showCheckerBoard=false;
+    private static boolean showCheckerBoard=true;
 
 
     public Checkerboard() {

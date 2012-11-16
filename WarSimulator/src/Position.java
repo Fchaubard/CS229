@@ -41,9 +41,9 @@ public class Position {
     public void setAngle(int angle) {
         //ensure at or between 0 and 270
         if (angle>=270)
-            angle = 270;
-        if (angle<=0)
             angle = 0;
+        if (angle<=0)
+            angle = 270;
 
         this.angle = angle;
     }
