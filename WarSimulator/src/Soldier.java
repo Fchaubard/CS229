@@ -33,7 +33,7 @@ public class Soldier {
         Random random = new Random();
         int moveNumber = random.nextInt(4);  // gives either a 0, 1, 2, or 3
 
-        Position newPosition = this.position;
+        Position newPosition = new Position(position.getX(),position.getY(),position.getAngle());
 
         switch(moveNumber) {
             case 0:    // Attack
@@ -42,26 +42,26 @@ public class Soldier {
                 break;
             case 1:   // Go left
 
-                newPosition.setAngle(newPosition.getAngle()+90);
+                newPosition.setAngle(position.getAngle()+90);
                 break;
             case 2:   // Go right
 
-                newPosition.setAngle(newPosition.getAngle()-90);
+                newPosition.setAngle(position.getAngle()-90);
                 break;
             case 3:  // Move Forward
 
                 switch(newPosition.getAngle()) {
                     case 0:
                         if(newPosition.getX()<sizeOfEnvironmentX-1){
-                            newPosition.setX(newPosition.getX()+1);
+                            newPosition.setX(position.getX()+1);
                         }
                         else{
                             //System.out.print("trying to jump over the edge!\n");
                         }
                         break;
                     case 90:
-                        if(newPosition.getX()<sizeOfEnvironmentY-1){
-                            newPosition.setY(newPosition.getY()+1);
+                        if(newPosition.getY()<sizeOfEnvironmentY-1){
+                            newPosition.setY(position.getY()+1);
                         }
                         else{
                             //System.out.print("trying to jump over the edge!\n");
@@ -69,7 +69,7 @@ public class Soldier {
                         break;
                     case 180:
                         if(newPosition.getX()>0){
-                            newPosition.setX(newPosition.getX()-1);
+                            newPosition.setX(position.getX()-1);
                         }
                         else{
                             //System.out.print("trying to jump over the edge!\n");
@@ -77,7 +77,7 @@ public class Soldier {
                         break;
                     case 270:
                         if(newPosition.getY()>0){
-                            newPosition.setY(newPosition.getY()-1);
+                            newPosition.setY(position.getY()-1);
                         }
                         else{
                             //System.out.print("trying to jump over the edge!\n");

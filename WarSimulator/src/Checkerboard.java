@@ -12,7 +12,7 @@ public class Checkerboard {
     private static int sizeOfEnvironmentY=10;
     private static int numberOfGames=10;
     private static boolean gameOver=false;
-    private static boolean showCheckerBoard=true;
+    private static boolean showCheckerBoard=false;
 
 
     public Checkerboard() {
@@ -79,7 +79,12 @@ public class Checkerboard {
             System.out.printf("Game %d Step %d : ",gameNumber,environment.getCurrentStep());
             for (Soldier a:environment.getSoldiers()){
                 System.out.printf(" S%d x=%d y=%d a=%d",a.getIdentifier(),a.getPosition().getX(),a.getPosition().getY(),a.getPosition().getAngle());
+                //for  (Soldier b:environment.getSoldiers()){
+                //        if(a.getIdentifier()!=b.getIdentifier() &&environment.arePositionsEqual(a.getPosition(),b.getPosition())){
+                //            System.out.printf("ISSUE S%d S%d \n\n\n\n\n\n\n\n\n\n",a.getIdentifier(), b.getIdentifier());
+                //        }
 
+                //}
             }
             System.out.printf("\n");
 

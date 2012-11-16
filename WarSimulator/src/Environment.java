@@ -1,7 +1,5 @@
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.Set;
-import java.util.TreeSet;
 
 /**
  * Created with IntelliJ IDEA.
@@ -31,19 +29,18 @@ public class Environment {
 
     public void initializeGame(){
 
-        Environment.getNumberOfSoldiersPerTeam();
 
-        for(int j=0; j<numberOfTeams; j++){
-            for(int i=0; i<numberOfSoldiersPerTeam; i++){
+
+        for(int i=0; i<(numberOfTeams+numberOfSoldiersPerTeam); i++){
 
                 //TODO Set the positions for team 0
                 if(soldiers[i].getTeamIdentifier()==0){
-                   soldiers[i].setPosition(new Position(0,sizeOfEnvironmentY-i-1,0));
+                   soldiers[i].setPosition(new Position(1,sizeOfEnvironmentY-i-1,0));
                 }else{
                    soldiers[i].setPosition(new Position(sizeOfEnvironmentX-1,sizeOfEnvironmentY-i-1,180));
                 }
 
-            }
+
         }
         this.setCurrentStep(0);
     }
@@ -169,48 +166,44 @@ public class Environment {
     }
     public ArrayList arePositionsUnique(ArrayList<Position> list){
         boolean positionsArentEqual=false;
-        Set<Integer> xPos = new TreeSet<Integer>();
-        Set<Integer> yPos = new TreeSet<Integer>();
-        ArrayList<Position> rectifiedlist = list;
 
         // ensure of the positions are equal by putting them into a set
         for (int i=0; i<list.size(); i++){
-            for (int j=0; j<xPos.size(); j++){
-                Position ai = list.get(i);
-                Position aj = list.get(j);
+            for (int j=0; j<list.size(); j++){
+                if(i!=j){
+                    Position ai = list.get(i);
+                    Position aj = list.get(j);
 
-                if(arePositionsEqual(ai,aj)){
+                    if(arePositionsEqual(ai,aj)){
 
-                    System.out.printf("conflict with S%d and S%d \n\n\n\n\n\n",i,j);
-                    Random random = new Random();
-                    int whogetsit = random.nextInt(1);  // gives either a 0, 1, 2, or 3
-                    if(whogetsit==0){
-                        // Randomly give it to a
-                        rectifiedlist.set(i,ai);
-                        rectifiedlist.set(j,getSoldier(j).getPosition());   //keep at current position
-                    }else if(whogetsit==1){
-                        // Randomly give it to b
-                        rectifiedlist.set(j,aj);
-                        rectifiedlist.set(i,getSoldier(i).getPosition());  //keep at current position
-                    }else{
-                        System.out.print("issue with random");
+                        //System.out.printf("conflict with S%d and S%d \n\n\n\n\n\n",i,j);
+                        Random random = new Random();
+                        int whogetsit = random.nextInt(1);  // gives either a 0, 1, 2, or 3
+                        if(whogetsit==0){
+                            // Randomly give it to a
+                            list.set(i,ai);
+                            list.set(j,getSoldier(j).getPosition());   //keep at current position
+                        }else if(whogetsit==1){
+                            // Randomly give it to b
+                            list.set(j,aj);
+                            list.set(i,getSoldier(i).getPosition());  //keep at current position
+                        }else{
+                            System.out.print("issue with random");
+                        }
+
                     }
-
-
-
                 }
-
             }
 
         }
 
-        return rectifiedlist;
+        return list;
     }
 
 
     public void resetGame(){
         //TODO save off data and outcome for the game
-        this.initializeGame();
+        this.setCurrentStep(-1);
     }
 
     public static int getNumberOfTeams() {
