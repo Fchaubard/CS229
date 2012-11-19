@@ -7,13 +7,13 @@ public class Checkerboard {
     private static Environment environment;
     private static int numberOfTeams=2;
     private static int numberOfSoldiersPerTeam=2;
-    private static int stepLimit=30;
+    private static int stepLimit=300;
     private static int sizeOfEnvironmentX=10;
     private static int sizeOfEnvironmentY=10;
-    private static int numberOfGames=10;
+    private static int numberOfGames=200;
     private static boolean showCheckerBoard=false;
     private static Position referencePosition = new Position(0,0,0);
-    private static int gameStyle=2;   //1 dumb v dumb 2 smart v dumb 3 smart v smart
+    private static int gameStyle=3;   //1 dumb v dumb 2 smart v dumb 3 smart v smart
 
     private static double lambda = 0.0;
     private static double gamma = 0.5;
@@ -97,7 +97,7 @@ public class Checkerboard {
         }
 
         for (int gameNumber=0; gameNumber<gameResults.size(); gameNumber++){
-            System.out.printf("%d : ",gameNumber);
+            System.out.printf("%d ",gameNumber);
             for (int soldierNumber=0; soldierNumber<environment.getSoldiers().size(); soldierNumber++){
                 System.out.printf(" %d ",gameResults.get(gameNumber).get(soldierNumber));
                 tally.set(soldierNumber,(tally.get(soldierNumber)+gameResults.get(gameNumber).get(soldierNumber)));

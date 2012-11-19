@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Random;
 
 /**
@@ -188,17 +190,26 @@ public class SmartSoldier implements Soldier{
         } else
         {
             Double[] actionValues = qMatrix.getStateActionValues(stateKey);
+
             //Find integer with maximum Q-value
             int move = 0;
-            Double max = 0.0;
+            Double max = Collections.max((Arrays.asList(actionValues)));
+            ArrayList<Integer> potentialMoves = new ArrayList<Integer>();
+
             for (int i = 0; i < 4; ++i)
             {
-                if (actionValues[i] > max)
+                if (actionValues[i] == max)
                 {
                     max = actionValues[i];
-                    move = i;
+                    potentialMoves.add(i);
                 }
             }
+
+
+            int choice = random.nextInt(potentialMoves.size());  // gives either a 0, 1, 2, or 3
+
+            move = potentialMoves.get(choice);
+
             return move;
         }
     }

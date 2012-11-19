@@ -1,5 +1,4 @@
 import java.util.HashMap;
-import java.util.Random;
 
 /**
  * Created with IntelliJ IDEA.
@@ -41,10 +40,12 @@ public class Q {
         //Look up saved value
         if (qValues.containsKey(stateKey))
         {
+            System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n we have a new champion!!!");
             return (qValues.get(stateKey));
         }
         else  //Value doesn't exist yet -> random initialization
         {
+            //TODO initialize smarter
             Double[] initValues = {1.0,1.0,1.0,1.0};
             qValues.put(stateKey, initValues);
             return  initValues;
