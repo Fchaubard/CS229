@@ -16,8 +16,11 @@ public class Environment {
     private static int stepLimit;
     private static int sizeOfEnvironmentX;
     private static int sizeOfEnvironmentY;
+    private static double inactivityPunishment;
+    private GameState currentPositions;
+    private RoundRewards currentRewards;
 
-    public Environment(int numberOfTeams, int numberOfSoldiersPerTeam, Soldier[] initial_Soldiers, int stepLimit, int sizeOfEnvironmentX, int sizeOfEnvironmentY) {
+    public Environment(int numberOfTeams, int numberOfSoldiersPerTeam, Soldier[] initial_Soldiers, int stepLimit, int sizeOfEnvironmentX, int sizeOfEnvironmentY, double inactivityPunishment) {
         this.setCurrentStep(-1);
         this.setSoldiers(initial_Soldiers);
         Environment.setNumberOfTeams(numberOfTeams);
@@ -25,27 +28,121 @@ public class Environment {
         Environment.setStepLimit(stepLimit);
         Environment.setSizeOfEnvironmentX(sizeOfEnvironmentX);
         Environment.setSizeOfEnvironmentY(sizeOfEnvironmentY);
+        Environment.inactivityPunishment = inactivityPunishment;
+        Position referencePosition = new Position(0,0,0);
     }
 
     public void initializeGame(){
 
 
 
-        for(int i=0; i<(numberOfTeams+numberOfSoldiersPerTeam); i++){
+        for(int i=0; i<(numberOfTeams*numberOfSoldiersPerTeam); i++){
 
                 //TODO Set the positions for team 0
                 if(soldiers[i].getTeamIdentifier()==0){
-                   soldiers[i].setPosition(new Position(1,sizeOfEnvironmentY-i-1,0));
+                   soldiers[i].prepareForNewGame(new Position(1,sizeOfEnvironmentY-i-1,0));
                 }else{
-                   soldiers[i].setPosition(new Position(sizeOfEnvironmentX-1,sizeOfEnvironmentY-i-1,180));
+                   soldiers[i].prepareForNewGame(new Position(sizeOfEnvironmentX-1,sizeOfEnvironmentY-i-1,180));
                 }
 
+        }//for
 
-        }
         this.setCurrentStep(0);
+    }
+    public void giveTeamReward(Soldier doingTheHurting, Soldier gotHurt){
+        gotHurt.setScore(gotHurt.getScore()-1);
+        doingTheHurting.setScore(doingTheHurting.getScore()+1);
+        System.out.printf("Soldier %d hurt soldier %d\n", doingTheHurting.getIdentifier(), gotHurt.getIdentifier());
+
+        for (Soldier a:soldiers) {
+            if(a.getTeamIdentifier()==doingTheHurting.getTeamIdentifier())
+                currentRewards.rewardTeam(a.getIdentifier(),1.0); //Reward team b
+            else if(a.getTeamIdentifier()==gotHurt.getTeamIdentifier())
+                currentRewards.rewardTeam(a.getIdentifier(),-1.0); //Hurt team a
+
+            }
+    }
+
+    public void determineRewards(){
+        currentRewards = new RoundRewards(soldiers.length);
+        // for soldier a check if soldier b hurt him
+        for (Soldier a:soldiers){
+            for (Soldier b:soldiers){
+
+
+                // check if they are on the same team
+                if(b.getTeamIdentifier()!=a.getTeamIdentifier()){
+                    // check if they have the same x or y which they must to have an attack
+                    if(b.getPosition().getX()==a.getPosition().getX() || b.getPosition().getY()==a.getPosition().getY()){
+                        switch (a.getPosition().getAngle()){
+                            case 0:
+                                //check -90 180 90
+                                if (((a.getPosition().getY()-1)==b.getPosition().getY())&&(b.getPosition().getAngle()==90)){  //-90
+                                    giveTeamReward(b, a);
+                                }else if (((a.getPosition().getX()-1)==b.getPosition().getX())&&(b.getPosition().getAngle()==0)){  //180
+                                   giveTeamReward(b, a);
+                                }else if (((a.getPosition().getY()+1)==b.getPosition().getY())&&(b.getPosition().getAngle()==270)){  //90
+                                   giveTeamReward(b, a);
+                                }else{
+                                    // System.out.print("close but no cigar\n");
+
+                                }
+                                break;
+                            case 90:
+                                //check -90 180 90
+                                if (((a.getPosition().getX()+1)==b.getPosition().getX())&&(b.getPosition().getAngle()==180)){  //-90
+                                   giveTeamReward(b, a);
+                                }else if (((a.getPosition().getY()-1)==b.getPosition().getY())&&(b.getPosition().getAngle()==90)){  //180
+                                   giveTeamReward(b, a);
+                                }else if (((a.getPosition().getX()-1)==b.getPosition().getX())&&(b.getPosition().getAngle()==0)){  //90
+                                   giveTeamReward(b, a);
+                                }else{
+                                    //System.out.print("close but no cigar\n");
+                                }
+                                break;
+                            case 180:
+                                //check -90 180 90
+                                if (((a.getPosition().getY()+1)==b.getPosition().getY())&&(b.getPosition().getAngle()==270)){  //-90
+                                   giveTeamReward(b, a);
+                                }else if (((a.getPosition().getX()+1)==b.getPosition().getX())&&(b.getPosition().getAngle()==180)){  //180
+                                   giveTeamReward(b, a);
+                                }else if (((a.getPosition().getY()-1)==b.getPosition().getY())&&(b.getPosition().getAngle()==90)){  //90
+                                   giveTeamReward(b, a);
+                                }else{
+                                    // System.out.print("close but no cigar\n");
+                                }
+                                break;
+                            case 270:
+                                //check -90 180 90
+                                if (((a.getPosition().getX()-1)==b.getPosition().getX())&&(b.getPosition().getAngle()==0)){  //-90
+                                   giveTeamReward(b, a);
+                                }else if (((a.getPosition().getY()+1)==b.getPosition().getY())&&(b.getPosition().getAngle()==270)){  //180
+                                   giveTeamReward(b, a);
+                                }else if (((a.getPosition().getX()+1)==b.getPosition().getX())&&(b.getPosition().getAngle()==180)){  //90
+                                   giveTeamReward(b, a);
+                                }else{
+                                    //System.out.print("close but no cigar\n");
+                                }
+                                break;
+                            default:
+                                System.out.print("someones got a wrong angle\n");
+
+                        }//switch
+                    }// second if
+                }// first if
+
+
+            }// second for
+        }// first for
+        currentRewards.punishInactivity(inactivityPunishment);
+
+
+
     }
 
     public void stepGame(){
+        // Let each decide where to move
+        ArrayList<Position> moveList = new ArrayList<Position>();
 
         // Step game until step limit
         if (currentStep==stepLimit){
@@ -57,83 +154,17 @@ public class Environment {
         // Step the game by 1
         this.setCurrentStep(this.getCurrentStep()+1);
 
+        determineRewards();
+
         // TODO Decide if there were any successful attacks
         // TODO Give rewards or hurt
-        // for soldier a check if soldier b hurt him
-        for (Soldier a:soldiers){
-            for (Soldier b:soldiers){
-
-
-                // check if they are on the same team
-                if(b.getTeamIdentifier()!=a.getTeamIdentifier()){
-                    // check if they have the same x or y which they must to have an attack
-                    if(b.getPosition().getX()==a.getPosition().getX() || b.getPosition().getY()==a.getPosition().getY()){
-                         switch (a.getPosition().getAngle()){
-                            case 0:
-                                //check -90 180 90
-                                if (((a.getPosition().getY()-1)==b.getPosition().getY())&&(b.getPosition().getAngle()==90)){  //-90
-                                    System.out.printf("Soldier %d hurt soldier %d\n",b.getIdentifier(),a.getIdentifier());
-                                }else if (((a.getPosition().getX()-1)==b.getPosition().getX())&&(b.getPosition().getAngle()==0)){  //180
-                                    System.out.printf("Soldier %d hurt soldier %d\n",b.getIdentifier(),a.getIdentifier());
-                                }else if (((a.getPosition().getY()+1)==b.getPosition().getY())&&(b.getPosition().getAngle()==270)){  //90
-                                    System.out.printf("Soldier %d hurt soldier %d\n",b.getIdentifier(),a.getIdentifier());
-                                }else{
-                                   // System.out.print("close but no cigar\n");
-                                }
-                                break;
-                            case 90:
-                                //check -90 180 90
-                                if (((a.getPosition().getX()+1)==b.getPosition().getX())&&(b.getPosition().getAngle()==180)){  //-90
-                                    System.out.printf("Soldier %d hurt soldier %d\n",b.getIdentifier(),a.getIdentifier());
-                                }else if (((a.getPosition().getY()-1)==b.getPosition().getY())&&(b.getPosition().getAngle()==90)){  //180
-                                    System.out.printf("Soldier %d hurt soldier %d\n",b.getIdentifier(),a.getIdentifier());
-                                }else if (((a.getPosition().getX()-1)==b.getPosition().getX())&&(b.getPosition().getAngle()==0)){  //90
-                                    System.out.printf("Soldier %d hurt soldier %d\n",b.getIdentifier(),a.getIdentifier());
-                                }else{
-                                    //System.out.print("close but no cigar\n");
-                                }
-                                break;
-                            case 180:
-                                //check -90 180 90
-                                if (((a.getPosition().getY()+1)==b.getPosition().getY())&&(b.getPosition().getAngle()==270)){  //-90
-                                    System.out.printf("Soldier %d hurt soldier %d\n",b.getIdentifier(),a.getIdentifier());
-                                }else if (((a.getPosition().getX()+1)==b.getPosition().getX())&&(b.getPosition().getAngle()==180)){  //180
-                                    System.out.printf("Soldier %d hurt soldier %d\n",b.getIdentifier(),a.getIdentifier());
-                                }else if (((a.getPosition().getY()-1)==b.getPosition().getY())&&(b.getPosition().getAngle()==90)){  //90
-                                    System.out.printf("Soldier %d hurt soldier %d\n",b.getIdentifier(),a.getIdentifier());
-                                }else{
-                                   // System.out.print("close but no cigar\n");
-                                }
-                                break;
-                            case 270:
-                                //check -90 180 90
-                                if (((a.getPosition().getX()-1)==b.getPosition().getX())&&(b.getPosition().getAngle()==0)){  //-90
-                                    System.out.printf("Soldier %d hurt soldier %d\n",b.getIdentifier(),a.getIdentifier());
-                                }else if (((a.getPosition().getY()+1)==b.getPosition().getY())&&(b.getPosition().getAngle()==270)){  //180
-                                    System.out.printf("Soldier %d hurt soldier %d\n",b.getIdentifier(),a.getIdentifier());
-                                }else if (((a.getPosition().getX()+1)==b.getPosition().getX())&&(b.getPosition().getAngle()==180)){  //90
-                                    System.out.printf("Soldier %d hurt soldier %d\n",b.getIdentifier(),a.getIdentifier());
-                                }else{
-                                    //System.out.print("close but no cigar\n");
-                                }
-                                break;
-                            default:
-                                System.out.print("someones got a wrong angle\n");
-
-                        }
-                    }
-                }
-
-
-            }
-
-        }
-
-        // Let each decide where to move
-        ArrayList<Position> moveList = new ArrayList<Position>();
 
         for (Soldier a : soldiers){
-            moveList.add(a.move(sizeOfEnvironmentX,sizeOfEnvironmentY));
+            double rewardForA = currentRewards.getSoldierReward(a.getIdentifier());
+
+            Position moveForA = a.move(rewardForA, getSoldierPositions(),  sizeOfEnvironmentX,  sizeOfEnvironmentY);
+
+            moveList.add(moveForA);
         }
 
         // Do move rectification
@@ -141,22 +172,17 @@ public class Environment {
 
         // Commit Moves
         for (int i=0; i<soldiers.length; i++){
-
             soldiers[i].setPosition(moveList.get(i));
         }
-
-
 
     }
 
     public ArrayList moveRectification(ArrayList moveList){
 
-
         ArrayList newMoveList = arePositionsUnique(moveList);
-
-
         return newMoveList;
     }
+
     public boolean arePositionsEqual(Position a,Position b){
         if((a.getX()==b.getX())&&(a.getY()==b.getY())){
             return true;
@@ -164,6 +190,7 @@ public class Environment {
 
         return false;
     }
+
     public ArrayList arePositionsUnique(ArrayList<Position> list){
         boolean positionsArentEqual=false;
 
@@ -224,6 +251,16 @@ public class Environment {
 
     public Soldier[] getSoldiers() {
         return soldiers;
+    }
+    public ArrayList<Position> getSoldierPositions() {
+
+        ArrayList<Position> positionArrayList = new ArrayList<Position>(soldiers.length);
+
+        for(Soldier a:soldiers){
+            positionArrayList.add(a.getPosition());
+        }
+
+        return positionArrayList;
     }
     public Soldier getSoldier(int i) {
         return soldiers[i];

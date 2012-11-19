@@ -15,6 +15,24 @@ import java.util.TreeSet;
 * To change this template use File | Settings | File Templates.
 */
 public class EnvironmentTest {
+    private static CheckerboardPanel panel;
+    private static Environment environment;
+    private static int numberOfTeams=2;
+    private static int numberOfSoldiersPerTeam=2;
+    private static int stepLimit=3000;
+    private static int sizeOfEnvironmentX=10;
+    private static int sizeOfEnvironmentY=10;
+    private static int numberOfGames=10;
+    private static boolean gameOver=false;
+    private static boolean showCheckerBoard=false;
+    private static Position referencePosition = new Position(0,0,0);
+    private static int gameStyle=1;   //1 dumb v dumb 2 smart v dumb 3 smart v smart
+
+    private static double lambda = 0.0;
+    private static double gamma = 0.5;
+    private static double learningRate = 0.125;
+    private static double epsilon = 0.01;
+    private static double inactivityPunishment = 0.05;
 
     public static Environment testEnvironment;
 
@@ -28,21 +46,31 @@ public class EnvironmentTest {
         List<Soldier> myList = new ArrayList<Soldier>();
 
 
-        // Form Teams
-        for (int i=0; i<(numberOfSoldiersPerTeam*numberOfTeams); i++){
+        for (int i=0; i<(numberOfSoldiersPerTeam); i++){
+            for (int j=0; j<(numberOfTeams); j++){
 
-            int teamNumber =0;
-            if(i>=numberOfSoldiersPerTeam){
-                teamNumber = 1;
+                Position pos = new Position(i,i,0);//set the positions in initialize game
+                Soldier soldier;
+                if(gameStyle==1)    //dumb soldiers
+                    soldier = new DumbSoldier((i+j*(numberOfSoldiersPerTeam+1)),j,pos);
+                if(gameStyle==2){    // dumb vs smart soldiers
+                    if(j==0)
+                        soldier = new DumbSoldier((i+j*(numberOfSoldiersPerTeam+1)),j,pos);
+                    else
+                        soldier = new SmartSoldier((i+j*(numberOfSoldiersPerTeam+1)),j, pos, referencePosition, lambda, gamma,learningRate, epsilon);
+
+                }
+                else             //smart soldiers
+                    soldier = new SmartSoldier((i+j*(numberOfSoldiersPerTeam+1)),j, pos, referencePosition, lambda, gamma,learningRate, epsilon);
+
+
+                myList.add(soldier);
             }
-            Position pos = new Position(i,i,i);//set the positions in initialize game
-            Soldier soldier = new Soldier(i,teamNumber,numberOfSoldiersPerTeam,numberOfTeams, pos);
-            myList.add(soldier);
         }
 
         Soldier[] soldiers = myList.toArray(new Soldier[myList.size()]);
 
-        testEnvironment = new Environment(numberOfTeams,numberOfSoldiersPerTeam,soldiers,stepLimit,sizeOfEnvironmentX,sizeOfEnvironmentY);
+        testEnvironment = new Environment(numberOfTeams,numberOfSoldiersPerTeam,soldiers,stepLimit,sizeOfEnvironmentX,sizeOfEnvironmentY, inactivityPunishment);
 
     }
 
