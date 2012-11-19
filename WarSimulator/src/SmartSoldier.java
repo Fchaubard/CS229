@@ -27,8 +27,8 @@ public class SmartSoldier implements Soldier{
 
     //Static variables
     // State variables
-    private String currentStateKey;
-    private String previousStateKey;
+    private String currentStateKey="";
+    private String previousStateKey="";
     private int previousChoice;
     // Game descriptors
     private static int sizeOfEnvironmentX;
@@ -86,10 +86,10 @@ public class SmartSoldier implements Soldier{
             traces.updateTraces();
         }
 
-    public Position move(Double newReward, ArrayList<Position> newGamePositions, int sizeOfEnvironmentX, int sizeOfEnvironmentY){
+    public Position move(Double newReward, ArrayList<Soldier> soldiers, int sizeOfEnvironmentX, int sizeOfEnvironmentY){
 
         //Update state
-        currentStateKey = calculateLocalStateKey(newGamePositions);
+        currentStateKey = calculateLocalStateKey(soldiers);
 
 
         //Learn from experience if not first play of the game
@@ -204,7 +204,7 @@ public class SmartSoldier implements Soldier{
     }
 
 
-    private String calculateLocalStateKey(ArrayList<Position> positions)
+    private String calculateLocalStateKey(ArrayList<Soldier> soldiers)
     {
         //TODO improve this key generator
 
@@ -213,7 +213,7 @@ public class SmartSoldier implements Soldier{
         String refKey = "";
         String enemiesKey = "";
 
-        Position myWorldPosition = positions.get(identifier);
+        Position myWorldPosition = position;//positions.get(identifier);
 
         //Calculate world coordinates reference key
         int refX = -worldRefPos.getX() + myWorldPosition.getX();
@@ -223,7 +223,7 @@ public class SmartSoldier implements Soldier{
         //Make sure angle is one of 0, 90, 180, 270
         if (refAngle < 0)
         {
-            refAngle += 360;
+            refAngle += 360; //should never hit this
         }
         //TODO make all the angles give constant length strings i.e. 000, 090...
         if (refAngle==0)
@@ -234,36 +234,35 @@ public class SmartSoldier implements Soldier{
             refKey += Integer.toString(refX) + Integer.toString(refY) + Integer.toString(refAngle);
 
         //Calculate team and enemies keys
-        for(int team = 0; team < numberOfTeams; team++)
+        for(int i = 0; i < soldiers.size(); i++)
         {
-            for (int member = 0; member < numberOfSoldersPerTeam; ++team)
-            {
+
                 //Enemies
-                if (team != teamIdentifier)
+                if (soldiers.get(i).getTeamIdentifier() != teamIdentifier)
                 {
-                    Position enemyPosition = positions.get(member + team * (numberOfSoldersPerTeam));
-                    int enemyX = -enemyPosition.getX() + myWorldPosition.getX();
-                    int enemyY = -enemyPosition.getY() + myWorldPosition.getY();
-                    int enemyAngle = -enemyPosition.getAngle() + myWorldPosition.getAngle();
+                    Position enemyPosition = soldiers.get(i).getPosition();
+                    int enemyX = enemyPosition.getX() - myWorldPosition.getX();
+                    int enemyY = enemyPosition.getY() - myWorldPosition.getY();
+                    int enemyAngle = enemyPosition.getAngle() - myWorldPosition.getAngle();
 
                     //Make sure angle is one of 0, 90, 180, 270
                     if (enemyAngle < 0)
                     {
-                        enemyAngle += 360;
+                        enemyAngle += 360;             //should never hit this
                     }
-                    if (refAngle==0)
+                    if (enemyAngle==0)
                         enemiesKey += Integer.toString(enemyX) + Integer.toString(enemyY) + "000";
-                    else if(refAngle==90)
+                    else if(enemyAngle==90)
                         enemiesKey += Integer.toString(enemyX) + Integer.toString(enemyY) + "090";
                     else
                         enemiesKey += Integer.toString(enemyX) + Integer.toString(enemyY) + Integer.toString(enemyAngle);
 
-                    enemiesKey += Integer.toString(enemyX) + Integer.toString(enemyY) + Integer.toString(enemyAngle);
+
                 }
                 //Team mates
-                else if (member != identifier)
+                else if (soldiers.get(i).getIdentifier() != identifier)
                 {
-                    Position memberPosition = positions.get(member + team * (numberOfSoldersPerTeam));
+                    Position memberPosition = soldiers.get(i).getPosition();
                     int memberX = memberPosition.getX() - myWorldPosition.getX();
                     int memberY = memberPosition.getY() - myWorldPosition.getY();
                     int memberAngle = memberPosition.getAngle() - myWorldPosition.getAngle();
@@ -271,19 +270,19 @@ public class SmartSoldier implements Soldier{
                     //Make sure angle is one of 0, 90, 180, 270
                     if (memberAngle < 0)
                     {
-                        memberAngle += 360;
+                        memberAngle += 360;     //should never hit this
                     }
-                    if (refAngle==0)
+                    if (memberAngle==0)
                         teamKey += Integer.toString(memberX) + Integer.toString(memberY) + "000";
-                    else if(refAngle==90)
+                    else if(memberAngle==90)
                         teamKey += Integer.toString(memberX) + Integer.toString(memberY) + "090";
                     else
                         teamKey += Integer.toString(memberX) + Integer.toString(memberY) + Integer.toString(memberAngle);
 
 
                 }
-            }
         }
+
 
 
         //Generate and return the state key

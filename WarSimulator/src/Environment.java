@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 
 /**
@@ -40,9 +41,9 @@ public class Environment {
 
                 //TODO Set the positions for team 0
                 if(soldiers[i].getTeamIdentifier()==0){
-                   soldiers[i].prepareForNewGame(new Position(1,sizeOfEnvironmentY-i-1,0));
+                   soldiers[i].prepareForNewGame(new Position(1, sizeOfEnvironmentY - i - 1, 0));
                 }else{
-                   soldiers[i].prepareForNewGame(new Position(sizeOfEnvironmentX-1,sizeOfEnvironmentY-i-1,180));
+                   soldiers[i].prepareForNewGame(new Position(sizeOfEnvironmentX - 1, sizeOfEnvironmentY - i - 1, 180));
                 }
 
         }//for
@@ -162,7 +163,7 @@ public class Environment {
         for (Soldier a : soldiers){
             double rewardForA = currentRewards.getSoldierReward(a.getIdentifier());
 
-            Position moveForA = a.move(rewardForA, getSoldierPositions(),  sizeOfEnvironmentX,  sizeOfEnvironmentY);
+            Position moveForA = a.move(rewardForA, getSoldiers(),  sizeOfEnvironmentX,  sizeOfEnvironmentY);
 
             moveList.add(moveForA);
         }
@@ -249,8 +250,8 @@ public class Environment {
         Environment.numberOfSoldiersPerTeam = numberOfSoldiersPerTeam;
     }
 
-    public Soldier[] getSoldiers() {
-        return soldiers;
+    public ArrayList<Soldier> getSoldiers() {
+        return new ArrayList<Soldier>(Arrays.asList(soldiers));
     }
     public ArrayList<Position> getSoldierPositions() {
 

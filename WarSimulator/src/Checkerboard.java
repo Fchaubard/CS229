@@ -92,13 +92,13 @@ public class Checkerboard {
 
         System.out.printf("Printing results for each game: \n");
         ArrayList<Integer> tally = new ArrayList<Integer>(numberOfSoldiersPerTeam*numberOfTeams);
-        for (int soldierNumber=0; soldierNumber<environment.getSoldiers().length; soldierNumber++){
+        for (int soldierNumber=0; soldierNumber<environment.getSoldiers().size(); soldierNumber++){
             tally.add(0);
         }
 
         for (int gameNumber=0; gameNumber<gameResults.size(); gameNumber++){
             System.out.printf("%d : ",gameNumber);
-            for (int soldierNumber=0; soldierNumber<environment.getSoldiers().length; soldierNumber++){
+            for (int soldierNumber=0; soldierNumber<environment.getSoldiers().size(); soldierNumber++){
                 System.out.printf(" %d ",gameResults.get(gameNumber).get(soldierNumber));
                 tally.set(soldierNumber,(tally.get(soldierNumber)+gameResults.get(gameNumber).get(soldierNumber)));
             }
@@ -106,7 +106,7 @@ public class Checkerboard {
         }
         System.out.printf("-------------------------------\n");
         System.out.printf("Total: \n");
-        for (int soldierNumber=0; soldierNumber<environment.getSoldiers().length; soldierNumber++){
+        for (int soldierNumber=0; soldierNumber<environment.getSoldiers().size(); soldierNumber++){
             System.out.printf(" %d ",tally.get(soldierNumber));
         }
     }

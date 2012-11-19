@@ -27,7 +27,7 @@ public class DumbSoldier implements Soldier {
         setPosition(startPosition);
         setScore(0);
     }
-    public Position move(Double newReward, ArrayList<Position> newGamePositions, int sizeOfEnvironmentX, int sizeOfEnvironmentY){
+    public Position move(Double newReward, ArrayList<Soldier> soldiers, int sizeOfEnvironmentX, int sizeOfEnvironmentY){
 
         // TODO Decision Process happens here
         Random random = new Random();

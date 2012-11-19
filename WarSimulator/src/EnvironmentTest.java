@@ -115,7 +115,7 @@ public class EnvironmentTest {
         Set<Integer> yPos = new TreeSet<Integer>();
 
         // ensure of the positions are equal by putting them into a set
-        for (int i=0; i<testEnvironment.getSoldiers().length; i++){
+        for (int i=0; i<testEnvironment.getSoldiers().size(); i++){
             Position position = testEnvironment.getSoldier(i).getPosition();
 
             try{
@@ -128,7 +128,7 @@ public class EnvironmentTest {
             }
 
         }
-        if(yPos.size()==testEnvironment.getSoldiers().length){
+        if(yPos.size()==testEnvironment.getSoldiers().size()){
             positionsArentEqual = 1;
         }
 
