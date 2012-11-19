@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a96aaf79-309f-4493-b933-1c64d6e6e290" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Checkerboard.java" afterPath="$PROJECT_DIR$/src/Checkerboard.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DumbSoldier.java" afterPath="$PROJECT_DIR$/src/DumbSoldier.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Q.java" afterPath="$PROJECT_DIR$/src/Q.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SmartSoldier.java" afterPath="$PROJECT_DIR$/src/SmartSoldier.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Soldier.java" afterPath="$PROJECT_DIR$/src/Soldier.java" />
     </list>
     <ignored path="WarSimulator.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -108,7 +106,7 @@
       <file leaf-file-name="DumbSoldier.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/DumbSoldier.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="98" column="0" selection-start="3346" selection-end="3346" vertical-scroll-proportion="-10.461538">
+            <state line="34" column="30" selection-start="1021" selection-end="1021" vertical-scroll-proportion="-6.1923075">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -128,12 +126,12 @@
       <file leaf-file-name="Checkerboard.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Checkerboard.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="34" selection-start="314" selection-end="314" vertical-scroll-proportion="0.5192308">
+            <state line="16" column="35" selection-start="657" selection-end="657" vertical-scroll-proportion="0.6923077">
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#958#978#0" expanded="true" />
-                <element signature="e#3348#3357#0" expanded="true" />
-                <element signature="e#4884#4893#0" expanded="true" />
+                <element signature="e#3349#3358#0" expanded="true" />
+                <element signature="e#4886#4895#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -225,8 +223,8 @@
         <option value="$PROJECT_DIR$/src/EnvironmentTest.java" />
         <option value="$PROJECT_DIR$/src/Q.java" />
         <option value="$PROJECT_DIR$/src/Soldier.java" />
-        <option value="$PROJECT_DIR$/src/DumbSoldier.java" />
         <option value="$PROJECT_DIR$/src/SmartSoldier.java" />
+        <option value="$PROJECT_DIR$/src/DumbSoldier.java" />
         <option value="$PROJECT_DIR$/src/Checkerboard.java" />
       </list>
     </option>
@@ -814,15 +812,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/DumbSoldier.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="98" column="0" selection-start="3346" selection-end="3346" vertical-scroll-proportion="-10.461538">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/SmartSoldier.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="4" column="28" selection-start="108" selection-end="108" vertical-scroll-proportion="-2.3076923">
@@ -833,14 +822,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/DumbSoldier.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="34" column="30" selection-start="1021" selection-end="1021" vertical-scroll-proportion="-6.1923075">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Checkerboard.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="34" selection-start="314" selection-end="314" vertical-scroll-proportion="0.5192308">
+        <state line="16" column="35" selection-start="657" selection-end="657" vertical-scroll-proportion="0.6923077">
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#958#978#0" expanded="true" />
-            <element signature="e#3348#3357#0" expanded="true" />
-            <element signature="e#4884#4893#0" expanded="true" />
+            <element signature="e#3349#3358#0" expanded="true" />
+            <element signature="e#4886#4895#0" expanded="true" />
           </folding>
         </state>
       </provider>

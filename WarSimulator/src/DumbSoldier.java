@@ -31,7 +31,7 @@ public class DumbSoldier implements Soldier {
 
         // TODO Decision Process happens here
         Random random = new Random();
-        int choice = random.nextInt(4);  // gives either a 0, 1, 2, or 3
+        int choice = 0;//random.nextInt(4);  // gives either a 0, 1, 2, or 3
 
         Position newPosition = new Position(position.getX(),position.getY(),position.getAngle());
 
