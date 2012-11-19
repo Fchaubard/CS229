@@ -20,7 +20,7 @@ public interface Soldier {
     public void setTeamIdentifier(int i);
     public int getScore();
     public void setScore(int i);
-
+    public Position convertChoiceToPosition(int choice, int sizeOfEnvironmentX, int sizeOfEnvironmentY);
 
 
 

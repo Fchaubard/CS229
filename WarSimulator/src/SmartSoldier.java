@@ -93,7 +93,6 @@ public class SmartSoldier implements Soldier{
         //Update state
         currentStateKey = calculateLocalStateKey(soldiers);
 
-
         //Learn from experience if not first play of the game
         if (!previousStateKey.equals(""))
         {
@@ -106,15 +105,13 @@ public class SmartSoldier implements Soldier{
         previousStateKey = currentStateKey;
 
 
-        return convertChoiceToPosition(newChoice);
+        return convertChoiceToPosition(newChoice, sizeOfEnvironmentX, sizeOfEnvironmentY);
 
     }
 
 
-    private Position convertChoiceToPosition(int choice)
-    {
-        Position newPosition = position;
-
+    public Position convertChoiceToPosition(int choice, int sizeOfEnvironmentX, int sizeOfEnvironmentY) {
+        Position newPosition = new Position(position.getX(),position.getY(),position.getAngle());
 
         switch(choice) {
             case 0:    // Attack
@@ -171,12 +168,12 @@ public class SmartSoldier implements Soldier{
             default: System.out.print("Invalid move");
                 break;
 
-
         }
 
         // Submit the newPosition
         return newPosition;
     }
+
 
 
     private int makeEGreedyChoice(String stateKey)
@@ -198,7 +195,7 @@ public class SmartSoldier implements Soldier{
 
             for (int i = 0; i < 4; ++i)
             {
-                if (actionValues[i] == max)
+                if (actionValues[i] == max.doubleValue())
                 {
                     max = actionValues[i];
                     potentialMoves.add(i);

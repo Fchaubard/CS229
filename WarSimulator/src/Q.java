@@ -40,7 +40,7 @@ public class Q {
         //Look up saved value
         if (qValues.containsKey(stateKey))
         {
-            System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n we have a new champion!!!");
+            //System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n we have a new champion!!!");
             return (qValues.get(stateKey));
         }
         else  //Value doesn't exist yet -> random initialization

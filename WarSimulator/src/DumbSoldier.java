@@ -93,6 +93,70 @@ public class DumbSoldier implements Soldier {
         }
 
         // Submit the newPosition
+        return convertChoiceToPosition(choice, sizeOfEnvironmentX, sizeOfEnvironmentY);
+    }
+
+    public Position convertChoiceToPosition(int choice, int sizeOfEnvironmentX, int sizeOfEnvironmentY) {
+        Position newPosition = new Position(position.getX(),position.getY(),position.getAngle());
+
+        switch(choice) {
+            case 0:    // Attack
+                // Dont change position
+
+                break;
+            case 1:   // Go left
+
+                newPosition.setAngle(position.getAngle()+90);
+                break;
+            case 2:   // Go right
+
+                newPosition.setAngle(position.getAngle()-90);
+                break;
+            case 3:  // Move Forward
+
+                switch(newPosition.getAngle()) {
+                    case 0:
+                        if(newPosition.getX()<sizeOfEnvironmentX-1){
+                            newPosition.setX(position.getX()+1);
+                        }
+                        else{
+                            //System.out.print("trying to jump over the edge!\n");
+                        }
+                        break;
+                    case 90:
+                        if(newPosition.getY()<sizeOfEnvironmentY-1){
+                            newPosition.setY(position.getY()+1);
+                        }
+                        else{
+                            //System.out.print("trying to jump over the edge!\n");
+                        }
+                        break;
+                    case 180:
+                        if(newPosition.getX()>0){
+                            newPosition.setX(position.getX()-1);
+                        }
+                        else{
+                            //System.out.print("trying to jump over the edge!\n");
+                        }
+                        break;
+                    case 270:
+                        if(newPosition.getY()>0){
+                            newPosition.setY(position.getY()-1);
+                        }
+                        else{
+                            //System.out.print("trying to jump over the edge!\n");
+                        }
+                        break;
+                    default:
+                        // System.out.printf("not a valid angle %d", newPosition.getAngle());
+                }
+                break;
+            default: System.out.print("Invalid move");
+                break;
+
+        }
+
+        // Submit the newPosition
         return newPosition;
     }
 
