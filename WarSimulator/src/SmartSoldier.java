@@ -59,8 +59,7 @@ public class SmartSoldier implements Soldier{
         epsilon = theEpsilon;
         qMatrix = new Q();
         traces = new EligibilityTraces(lambda, gamma);
-        //sizeOfEnvironmentX = theSizeOfEnvironmentX;
-        //sizeOfEnvironmentY = theSizeOfEnvironmentY;
+        prepareForNewGame(new Position(0,0,0));
 
     }
 
@@ -217,9 +216,9 @@ public class SmartSoldier implements Soldier{
         Position myWorldPosition = positions.get(identifier);
 
         //Calculate world coordinates reference key
-        int refX = worldRefPos.getX() - myWorldPosition.getX();
-        int refY = worldRefPos.getY() - myWorldPosition.getY();
-        int refAngle = worldRefPos.getY() - myWorldPosition.getAngle();
+        int refX = -worldRefPos.getX() + myWorldPosition.getX();
+        int refY = -worldRefPos.getY() + myWorldPosition.getY();
+        int refAngle = -worldRefPos.getY() + myWorldPosition.getAngle();
 
         //Make sure angle is one of 0, 90, 180, 270
         if (refAngle < 0)
@@ -227,33 +226,44 @@ public class SmartSoldier implements Soldier{
             refAngle += 360;
         }
         //TODO make all the angles give constant length strings i.e. 000, 090...
-        refKey += Integer.toString(refX) + Integer.toString(refY) + Integer.toString(refAngle);
+        if (refAngle==0)
+            refKey += Integer.toString(refX) + Integer.toString(refY) + "000";
+        else if(refAngle==90)
+            refKey += Integer.toString(refX) + Integer.toString(refY) + "090";
+        else
+            refKey += Integer.toString(refX) + Integer.toString(refY) + Integer.toString(refAngle);
 
         //Calculate team and enemies keys
-        for(int team = 0; team < numberOfTeams; ++team)
+        for(int team = 0; team < numberOfTeams; team++)
         {
             for (int member = 0; member < numberOfSoldersPerTeam; ++team)
             {
                 //Enemies
                 if (team != teamIdentifier)
                 {
-                    Position enemyPosition = positions.get(member + team*(numberOfSoldersPerTeam+1));
-                    int enemyX = enemyPosition.getX() - myWorldPosition.getX();
-                    int enemyY = enemyPosition.getY() - myWorldPosition.getY();
-                    int enemyAngle = enemyPosition.getAngle() - myWorldPosition.getAngle();
+                    Position enemyPosition = positions.get(member + team * (numberOfSoldersPerTeam));
+                    int enemyX = -enemyPosition.getX() + myWorldPosition.getX();
+                    int enemyY = -enemyPosition.getY() + myWorldPosition.getY();
+                    int enemyAngle = -enemyPosition.getAngle() + myWorldPosition.getAngle();
 
                     //Make sure angle is one of 0, 90, 180, 270
                     if (enemyAngle < 0)
                     {
                         enemyAngle += 360;
                     }
+                    if (refAngle==0)
+                        enemiesKey += Integer.toString(enemyX) + Integer.toString(enemyY) + "000";
+                    else if(refAngle==90)
+                        enemiesKey += Integer.toString(enemyX) + Integer.toString(enemyY) + "090";
+                    else
+                        enemiesKey += Integer.toString(enemyX) + Integer.toString(enemyY) + Integer.toString(enemyAngle);
 
                     enemiesKey += Integer.toString(enemyX) + Integer.toString(enemyY) + Integer.toString(enemyAngle);
                 }
                 //Team mates
                 else if (member != identifier)
                 {
-                    Position memberPosition = positions.get(member + team*(numberOfSoldersPerTeam+1));
+                    Position memberPosition = positions.get(member + team * (numberOfSoldersPerTeam));
                     int memberX = memberPosition.getX() - myWorldPosition.getX();
                     int memberY = memberPosition.getY() - myWorldPosition.getY();
                     int memberAngle = memberPosition.getAngle() - myWorldPosition.getAngle();
@@ -263,8 +273,14 @@ public class SmartSoldier implements Soldier{
                     {
                         memberAngle += 360;
                     }
+                    if (refAngle==0)
+                        teamKey += Integer.toString(memberX) + Integer.toString(memberY) + "000";
+                    else if(refAngle==90)
+                        teamKey += Integer.toString(memberX) + Integer.toString(memberY) + "090";
+                    else
+                        teamKey += Integer.toString(memberX) + Integer.toString(memberY) + Integer.toString(memberAngle);
 
-                    teamKey += Integer.toString(memberX) + Integer.toString(memberY) + Integer.toString(memberAngle);
+
                 }
             }
         }

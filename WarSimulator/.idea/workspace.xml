@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a96aaf79-309f-4493-b933-1c64d6e6e290" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Soldier.java" afterPath="$PROJECT_DIR$/src/DumbSoldier.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Checkerboard.java" afterPath="$PROJECT_DIR$/src/Checkerboard.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Environment.java" afterPath="$PROJECT_DIR$/src/Environment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/EnvironmentTest.java" afterPath="$PROJECT_DIR$/src/EnvironmentTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SmartSoldier.java" afterPath="$PROJECT_DIR$/src/SmartSoldier.java" />
     </list>
     <ignored path="WarSimulator.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -38,7 +35,46 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/Checkerboard.java" line="48" class="Checkerboard" package="">
+      <breakpoint url="file://$PROJECT_DIR$/src/Environment.java" line="164" class="Environment" package="">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="false" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/Environment.java" line="162" class="Environment" package="">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="false" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/SmartSoldier.java" line="218" class="SmartSoldier" package="">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="false" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/SmartSoldier.java" line="289" class="SmartSoldier" package="">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -95,7 +131,7 @@
       <file leaf-file-name="DumbSoldier.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/DumbSoldier.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="127" column="18" selection-start="3909" selection-end="3914" vertical-scroll-proportion="-8.692307">
+            <state line="127" column="18" selection-start="3909" selection-end="3914" vertical-scroll-proportion="-11.192307">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -103,22 +139,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Soldier.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Soldier.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="33" selection-start="756" selection-end="756" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Checkerboard.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Checkerboard.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Checkerboard.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="48" column="0" selection-start="1691" selection-end="1691" vertical-scroll-proportion="-2.503937">
+            <state line="135" column="0" selection-start="4977" selection-end="4977" vertical-scroll-proportion="5.230769">
               <folding>
-                <element signature="e#999#1019#0" expanded="true" />
-                <element signature="e#3389#3398#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#956#976#0" expanded="true" />
+                <element signature="e#3346#3355#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -127,10 +155,28 @@
       <file leaf-file-name="SmartSoldier.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/SmartSoldier.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="299" column="23" selection-start="9420" selection-end="9425" vertical-scroll-proportion="-5.230769">
+            <state line="289" column="0" selection-start="9749" selection-end="9749" vertical-scroll-proportion="-3.4615386">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EligibilityTraces.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/EligibilityTraces.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="15" column="32" selection-start="305" selection-end="305" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Position.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Position.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="17" column="0" selection-start="388" selection-end="388" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -153,10 +199,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Environment.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Environment.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Environment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="65" column="16" selection-start="2634" selection-end="2634" vertical-scroll-proportion="38.884617">
+            <state line="162" column="0" selection-start="7591" selection-end="7591" vertical-scroll-proportion="0.33333334">
               <folding>
                 <element signature="e#10542#10552#0" expanded="true" />
               </folding>
@@ -207,10 +253,10 @@
         <option value="$PROJECT_DIR$/src/RoundRewards.java" />
         <option value="$PROJECT_DIR$/src/Soldier.java" />
         <option value="$PROJECT_DIR$/src/DumbSoldier.java" />
-        <option value="$PROJECT_DIR$/src/SmartSoldier.java" />
         <option value="$PROJECT_DIR$/src/EnvironmentTest.java" />
         <option value="$PROJECT_DIR$/src/Environment.java" />
         <option value="$PROJECT_DIR$/src/Checkerboard.java" />
+        <option value="$PROJECT_DIR$/src/SmartSoldier.java" />
       </list>
     </option>
   </component>
@@ -587,7 +633,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="95" y="23" width="1168" height="714" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -595,7 +641,7 @@
       <window_info id="JavaEE:App" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.47386172" sideWeight="0.97410715" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.5177066" sideWeight="0.97410715" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -606,8 +652,8 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23125" sideWeight="0.5767285" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4232715" sideWeight="0.9318182" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23125" sideWeight="0.48229343" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.41315347" sideWeight="0.9318182" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.16863406" sideWeight="0.9955654" order="1" side_tool="false" content_ui="tabs" />
@@ -728,28 +774,9 @@
         <state line="24" column="36" selection-start="461" selection-end="461" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Position.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="38" selection-start="779" selection-end="779" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/EligibilityTraces.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="32" selection-start="305" selection-end="305" vertical-scroll-proportion="0.62674093">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///Library/Java/JavaVirtualMachines/1.6.0_37-b06-434.jdk/Contents/Home/src.jar!/src/java/util/ArrayList.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="546" column="0" selection-start="20042" selection-end="20042" vertical-scroll-proportion="0.33236995">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Q.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="13" selection-start="218" selection-end="218" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -777,25 +804,57 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/SmartSoldier.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="299" column="23" selection-start="9420" selection-end="9425" vertical-scroll-proportion="-5.230769">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Soldier.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="33" selection-start="756" selection-end="756" vertical-scroll-proportion="0.0">
+        <state line="23" column="33" selection-start="756" selection-end="756" vertical-scroll-proportion="0.6788009">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/DumbSoldier.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="127" column="18" selection-start="3909" selection-end="3914" vertical-scroll-proportion="-8.692307">
+        <state line="127" column="18" selection-start="3909" selection-end="3914" vertical-scroll-proportion="-11.192307">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Checkerboard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="135" column="0" selection-start="4977" selection-end="4977" vertical-scroll-proportion="5.230769">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#956#976#0" expanded="true" />
+            <element signature="e#3346#3355#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Position.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="0" selection-start="388" selection-end="388" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Q.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="13" selection-start="218" selection-end="218" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/EligibilityTraces.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="32" selection-start="305" selection-end="305" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SmartSoldier.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="289" column="0" selection-start="9749" selection-end="9749" vertical-scroll-proportion="-3.4615386">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -804,19 +863,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Environment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="65" column="16" selection-start="2634" selection-end="2634" vertical-scroll-proportion="38.884617">
+        <state line="162" column="0" selection-start="7591" selection-end="7591" vertical-scroll-proportion="0.33333334">
           <folding>
             <element signature="e#10542#10552#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Checkerboard.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="0" selection-start="1691" selection-end="1691" vertical-scroll-proportion="-2.503937">
-          <folding>
-            <element signature="e#999#1019#0" expanded="true" />
-            <element signature="e#3389#3398#0" expanded="true" />
           </folding>
         </state>
       </provider>
