@@ -11,7 +11,7 @@ public interface Soldier {
 
     // implement all methods you want to have polymorphism
     public void prepareForNewGame(Position startPosition);
-    public Position move(Double newReward, ArrayList<Soldier> soldier, int sizeOfEnvironmentX, int sizeOfEnvironmentY);
+    public Position move(Double newReward, ArrayList<Soldier> soldiers);
     public Position getPosition();
     public void setPosition(Position p);
     public int getIdentifier();
@@ -20,7 +20,7 @@ public interface Soldier {
     public void setTeamIdentifier(int i);
     public int getScore();
     public void setScore(int i);
-    public Position convertChoiceToPosition(int choice, int sizeOfEnvironmentX, int sizeOfEnvironmentY);
+
 
 
 

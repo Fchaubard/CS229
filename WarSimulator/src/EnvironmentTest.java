@@ -52,16 +52,16 @@ public class EnvironmentTest {
                 Position pos = new Position(i,i,0);//set the positions in initialize game
                 Soldier soldier;
                 if(gameStyle==1)    //dumb soldiers
-                    soldier = new DumbSoldier((i+j*(numberOfSoldiersPerTeam+1)),j,pos);
+                    soldier = new DumbSoldier((i+j*(numberOfSoldiersPerTeam+1)),j,pos, sizeOfEnvironmentX, sizeOfEnvironmentY);
                 if(gameStyle==2){    // dumb vs smart soldiers
                     if(j==0)
-                        soldier = new DumbSoldier((i+j*(numberOfSoldiersPerTeam+1)),j,pos);
+                        soldier = new DumbSoldier((i+j*(numberOfSoldiersPerTeam+1)),j,pos, sizeOfEnvironmentX, sizeOfEnvironmentY);
                     else
-                        soldier = new SmartSoldier((i+j*(numberOfSoldiersPerTeam+1)),j, pos, referencePosition, lambda, gamma,learningRate, epsilon);
+                        soldier = new SmartSoldier((i+j*(numberOfSoldiersPerTeam+1)),j, pos, sizeOfEnvironmentX, sizeOfEnvironmentY, referencePosition, lambda, gamma,learningRate, epsilon);
 
                 }
                 else             //smart soldiers
-                    soldier = new SmartSoldier((i+j*(numberOfSoldiersPerTeam+1)),j, pos, referencePosition, lambda, gamma,learningRate, epsilon);
+                    soldier = new SmartSoldier((i+j*(numberOfSoldiersPerTeam+1)),j, pos, sizeOfEnvironmentX, sizeOfEnvironmentY, referencePosition, lambda, gamma,learningRate, epsilon);
 
 
                 myList.add(soldier);
@@ -115,7 +115,7 @@ public class EnvironmentTest {
         Set<Integer> yPos = new TreeSet<Integer>();
 
         // ensure of the positions are equal by putting them into a set
-        for (int i=0; i<testEnvironment.getSoldiers().size(); i++){
+        for (int i=0; i<testEnvironment.getSoldiers().length; i++){
             Position position = testEnvironment.getSoldier(i).getPosition();
 
             try{
@@ -128,7 +128,7 @@ public class EnvironmentTest {
             }
 
         }
-        if(yPos.size()==testEnvironment.getSoldiers().size()){
+        if(yPos.size()==testEnvironment.getSoldiers().length){
             positionsArentEqual = 1;
         }
 

@@ -45,14 +45,10 @@ public class RoundRewards {
 
     public void setSoldierReward(int soldierNumber, Double reward)
     {
-        rewards.set(soldierNumber, rewards.get(soldierNumber)+reward);
+        rewards.set(soldierNumber, reward);
     }
 
-    public void rewardTeam(int soldierNumber, Double reward)
-    {
-         rewards.set(soldierNumber, rewards.get(soldierNumber)+reward);
 
-    }
 
     public void punishInactivity(Double uniformPunishment)
     {

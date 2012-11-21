@@ -78,7 +78,7 @@ public class EligibilityTraces {
             Double[] actionQValues = qMatrix.getStateActionValues(key);
             for(int i = 0; i < 4; ++i)
             {
-                qMatrix.setQValue(key,i, actionQValues[i] - delta*learningRate*actionTrace[i]);
+                qMatrix.setQValue(key,i, actionQValues[i] + delta*learningRate*actionTrace[i]);
             }
         }
     }

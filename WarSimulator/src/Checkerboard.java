@@ -7,19 +7,20 @@ public class Checkerboard {
     private static Environment environment;
     private static int numberOfTeams=2;
     private static int numberOfSoldiersPerTeam=1;
-    private static int stepLimit=80;
+    private static int stepLimit=100;
     private static int sizeOfEnvironmentX=10;
     private static int sizeOfEnvironmentY=10;
     private static int numberOfGames=5000;
+    private static boolean gameOver=false;
     private static boolean showCheckerBoard=false;
     private static Position referencePosition = new Position(0,0,0);
-    private static int gameStyle=2;   //1 dumb v dumb 2 dumb v smart 3 smart v smart
+    private static int gameStyle=3;   //1 dumb v dumb 2 smart v dumb 3 smart v smart
 
-    private static double lambda = 0.0;
-    private static double gamma = 0.5;
+    private static double lambda = 0.5;
+    private static double gamma = 0.9;
     private static double learningRate = 0.125;
     private static double epsilon = 0.01;
-    private static double inactivityPunishment = 0.05;
+    private static double inactivityPunishment = 0.0005;
     private static ArrayList<ArrayList<Integer>> gameResults = new ArrayList<ArrayList<Integer>>(numberOfGames); //numGames x numSoldiers
 
 
@@ -54,15 +55,10 @@ public class Checkerboard {
 
             }
 
-            System.out.printf("Game %d Step %d : ",gameNumber,environment.getCurrentStep());
+            System.out.printf("Game %d Step %d ",gameNumber,environment.getCurrentStep());
             for (Soldier a:environment.getSoldiers()){
                 System.out.printf(" S%d x=%d y=%d a=%d",a.getIdentifier(),a.getPosition().getX(),a.getPosition().getY(),a.getPosition().getAngle());
-                //for  (Soldier b:environment.getSoldiers()){
-                //        if(a.getIdentifier()!=b.getIdentifier() &&environment.arePositionsEqual(a.getPosition(),b.getPosition())){
-                //            System.out.printf("ISSUE S%d S%d \n\n\n\n\n\n\n\n\n\n",a.getIdentifier(), b.getIdentifier());
-                //        }
 
-                //}
             }
             System.out.printf("\n");
 
@@ -90,17 +86,15 @@ public class Checkerboard {
 
     private static void printResults() {
 
-
         System.out.printf("Printing results for each game: \n");
         ArrayList<Integer> tally = new ArrayList<Integer>(numberOfSoldiersPerTeam*numberOfTeams);
-        for (int soldierNumber=0; soldierNumber<environment.getSoldiers().size(); soldierNumber++){
+        for (int soldierNumber=0; soldierNumber<environment.getSoldiers().length; soldierNumber++){
             tally.add(0);
         }
 
         for (int gameNumber=0; gameNumber<gameResults.size(); gameNumber++){
             System.out.printf("%d ",gameNumber);
-
-            for (int soldierNumber=0; soldierNumber<environment.getSoldiers().size(); soldierNumber++){
+            for (int soldierNumber=0; soldierNumber<environment.getSoldiers().length; soldierNumber++){
                 System.out.printf(" %d ",gameResults.get(gameNumber).get(soldierNumber));
                 tally.set(soldierNumber,(tally.get(soldierNumber)+gameResults.get(gameNumber).get(soldierNumber)));
             }
@@ -108,9 +102,10 @@ public class Checkerboard {
         }
         System.out.printf("-------------------------------\n");
         System.out.printf("Total: \n");
-        for (int soldierNumber=0; soldierNumber<environment.getSoldiers().size(); soldierNumber++){
+        for (int soldierNumber=0; soldierNumber<environment.getSoldiers().length; soldierNumber++){
             System.out.printf(" %d ",tally.get(soldierNumber));
         }
+
     }
 
     public Checkerboard() {
@@ -134,23 +129,24 @@ public class Checkerboard {
         List<Soldier> myList = new ArrayList<Soldier>();
 
         // Form Teams
-        for (int i=0; i<(numberOfSoldiersPerTeam); i++){
-            for (int j=0; j<(numberOfTeams); j++){
+        for (int j=0; j<(numberOfTeams); j++){
+            for (int i=0; i<(numberOfSoldiersPerTeam); i++){
 
                 Position pos = new Position(i,i,0);//set the positions in initialize game
                 Soldier soldier;
+
                 if(gameStyle==1){    //dumb soldiers
-                    soldier = new DumbSoldier((i+j*(numberOfSoldiersPerTeam)),j,pos);
+                    soldier = new DumbSoldier((i+j*(numberOfSoldiersPerTeam)),j,pos, sizeOfEnvironmentX, sizeOfEnvironmentY);
                 }
                 else if(gameStyle==2){    // dumb vs smart soldiers
                     if(j==0)
-                        soldier = new DumbSoldier((i+j*(numberOfSoldiersPerTeam)),j,pos);
+                        soldier = new DumbSoldier((i+j*(numberOfSoldiersPerTeam)),j,pos, sizeOfEnvironmentX, sizeOfEnvironmentY);
                     else
-                        soldier = new SmartSoldier((i+j*(numberOfSoldiersPerTeam)),j, pos, referencePosition, lambda, gamma,learningRate, epsilon);
+                        soldier = new SmartSoldier((i+j*(numberOfSoldiersPerTeam)),j, pos, sizeOfEnvironmentX, sizeOfEnvironmentY, referencePosition, lambda, gamma,learningRate, epsilon);
 
                 }
                 else             //smart soldiers
-                    soldier = new SmartSoldier((i+j*(numberOfSoldiersPerTeam)),j, pos, referencePosition, lambda, gamma,learningRate, epsilon);
+                    soldier = new SmartSoldier((i+j*(numberOfSoldiersPerTeam)),j, pos, sizeOfEnvironmentX, sizeOfEnvironmentY, referencePosition, lambda, gamma,learningRate, epsilon);
 
 
                 myList.add(soldier);

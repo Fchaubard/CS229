@@ -22,6 +22,8 @@ public class SmartSoldier implements Soldier{
     private  int numberOfSoldersPerTeam;
     private Position position;
     private int score=0;
+    private int sizeOfEnvironmentX;
+    private int sizeOfEnvironmentY;
 
     // Smart Variables
     private Q qMatrix;
@@ -29,12 +31,11 @@ public class SmartSoldier implements Soldier{
 
     //Static variables
     // State variables
-    private String currentStateKey="";
-    private String previousStateKey="";
+    private String currentStateKey;
+    private String previousStateKey;
     private int previousChoice;
     // Game descriptors
-    private static int sizeOfEnvironmentX;
-    private static int sizeOfEnvironmentY;
+
     private static Position worldRefPos; //for reference.
 
     //Learning parameters
@@ -47,13 +48,16 @@ public class SmartSoldier implements Soldier{
 
 
     //Constructors
-    public SmartSoldier(int identifier, int teamIdentifier,  Position position,
+    public SmartSoldier(int identifier, int teamIdentifier,  Position position, int sizeOfEnvironmentX, int sizeOfEnvironmentY,
                    Position theWorldRefPos,
                    Double theLambda, Double theGamma, Double theLearningRate, Double theEpsilon) {
 
         this.setIdentifier(identifier);
         this.setTeamIdentifier(teamIdentifier);
         this.setPosition(position);
+        this.sizeOfEnvironmentX = sizeOfEnvironmentX;
+        this.sizeOfEnvironmentY = sizeOfEnvironmentY;
+
         worldRefPos = theWorldRefPos;
         learningRate = theLearningRate;
         lambda = theLambda;
@@ -61,7 +65,10 @@ public class SmartSoldier implements Soldier{
         epsilon = theEpsilon;
         qMatrix = new Q();
         traces = new EligibilityTraces(lambda, gamma);
-        prepareForNewGame(new Position(0,0,0));
+        currentStateKey = "";
+        previousStateKey = "";
+        //sizeOfEnvironmentX = theSizeOfEnvironmentX;
+        //sizeOfEnvironmentY = theSizeOfEnvironmentY;
 
     }
 
@@ -70,8 +77,8 @@ public class SmartSoldier implements Soldier{
         setScore(0);
         position = startPosition;
         currentStateKey = "";
+        previousStateKey = "";
         previousChoice = 0;
-        currentStateKey = "";
         traces = new EligibilityTraces(lambda, gamma);
     }
 
@@ -81,17 +88,19 @@ public class SmartSoldier implements Soldier{
             //Calculate new delta (temporal difference?)
             int provisionalChoice = makeEGreedyChoice(currentStateKey);
             Double tempDiff = newReward + gamma*qMatrix.getQValue(currentStateKey,provisionalChoice)
-                                        + qMatrix.getQValue(previousStateKey,previousChoice);
+                                        - qMatrix.getQValue(previousStateKey,previousChoice);
 
             //Update
             traces.updateQMatrix(qMatrix,tempDiff,learningRate);
             traces.updateTraces();
         }
 
-    public Position move(Double newReward, ArrayList<Soldier> soldiers, int sizeOfEnvironmentX, int sizeOfEnvironmentY){
+    public Position move(Double newReward, ArrayList<Soldier> soldiers){
+
 
         //Update state
         currentStateKey = calculateLocalStateKey(soldiers);
+
 
         //Learn from experience if not first play of the game
         if (!previousStateKey.equals(""))
@@ -99,19 +108,22 @@ public class SmartSoldier implements Soldier{
           learn(newReward);
         }
 
-
+        //Make choice and leave trace
         int newChoice =  makeEGreedyChoice(currentStateKey);
         previousChoice = newChoice;
         previousStateKey = currentStateKey;
+        traces.addTrace(previousStateKey,previousChoice);  //This was missing before
 
 
-        return convertChoiceToPosition(newChoice, sizeOfEnvironmentX, sizeOfEnvironmentY);
+        return convertChoiceToPosition(newChoice);
 
     }
 
 
-    public Position convertChoiceToPosition(int choice, int sizeOfEnvironmentX, int sizeOfEnvironmentY) {
-        Position newPosition = new Position(position.getX(),position.getY(),position.getAngle());
+    private Position convertChoiceToPosition(int choice)
+    {
+        Position newPosition = position;
+
 
         switch(choice) {
             case 0:    // Attack
@@ -168,12 +180,12 @@ public class SmartSoldier implements Soldier{
             default: System.out.print("Invalid move");
                 break;
 
+
         }
 
         // Submit the newPosition
         return newPosition;
     }
-
 
 
     private int makeEGreedyChoice(String stateKey)
@@ -191,9 +203,12 @@ public class SmartSoldier implements Soldier{
             //Find integer with maximum Q-value
             int move = 0;
             Double max = Collections.max((Arrays.asList(actionValues)));
+            int a;  //for debugging purposes
+
+
             ArrayList<Integer> potentialMoves = new ArrayList<Integer>();
 
-            for (int i = 0; i < 4; ++i)
+            for (int i = 0; i < actionValues.length; i++)
             {
                 if (actionValues[i] == max.doubleValue())
                 {
@@ -202,6 +217,12 @@ public class SmartSoldier implements Soldier{
                 }
             }
 
+            if (potentialMoves.size()!=4)
+                a=1;     //for debugging purposes
+            if (max.doubleValue()>1.0){
+                a=1;   //for debugging purposes
+            }
+            //System.out.printf("actionValue 0=%f, 1=%f, 2=%f, 3=%f \n\n", actionValues[0],actionValues[1],actionValues[2],actionValues[3]);
 
             int choice = random.nextInt(potentialMoves.size());  // gives either a 0, 1, 2, or 3
 
@@ -245,56 +266,60 @@ public class SmartSoldier implements Soldier{
         for(int i = 0; i < soldiers.size(); i++)
         {
 
-                //Enemies
-                if (soldiers.get(i).getTeamIdentifier() != teamIdentifier)
+            //Enemies
+            if (soldiers.get(i).getTeamIdentifier() != teamIdentifier)
+            {
+                Position enemyPosition = soldiers.get(i).getPosition();
+                int enemyX = enemyPosition.getX() - myWorldPosition.getX();
+                int enemyY = enemyPosition.getY() - myWorldPosition.getY();
+                int enemyAngle = enemyPosition.getAngle() - myWorldPosition.getAngle();
+
+                //Make sure angle is one of 0, 90, 180, 270
+                if (enemyAngle < 0)
                 {
-                    Position enemyPosition = soldiers.get(i).getPosition();
-                    int enemyX = enemyPosition.getX() - myWorldPosition.getX();
-                    int enemyY = enemyPosition.getY() - myWorldPosition.getY();
-                    int enemyAngle = enemyPosition.getAngle() - myWorldPosition.getAngle();
-
-                    //Make sure angle is one of 0, 90, 180, 270
-                    if (enemyAngle < 0)
-                    {
-                        enemyAngle += 360;             //should never hit this
-                    }
-                    if (enemyAngle==0)
-                        enemiesKey += Integer.toString(enemyX) + Integer.toString(enemyY) + "000";
-                    else if(enemyAngle==90)
-                        enemiesKey += Integer.toString(enemyX) + Integer.toString(enemyY) + "090";
-                    else
-                        enemiesKey += Integer.toString(enemyX) + Integer.toString(enemyY) + Integer.toString(enemyAngle);
-
-
+                    enemyAngle += 360;             //should never hit this
                 }
-                //Team mates
-                else if (soldiers.get(i).getIdentifier() != identifier)
+                if (enemyAngle==0)
+                    enemiesKey += Integer.toString(enemyX) + Integer.toString(enemyY) + "000";
+                else if(enemyAngle==90)
+                    enemiesKey += Integer.toString(enemyX) + Integer.toString(enemyY) + "090";
+                else
+                    enemiesKey += Integer.toString(enemyX) + Integer.toString(enemyY) + Integer.toString(enemyAngle);
+
+
+            }
+            //Team mates
+            else if (soldiers.get(i).getIdentifier() != identifier)
+            {
+                Position memberPosition = soldiers.get(i).getPosition();
+                int memberX = memberPosition.getX() - myWorldPosition.getX();
+                int memberY = memberPosition.getY() - myWorldPosition.getY();
+                int memberAngle = memberPosition.getAngle() - myWorldPosition.getAngle();
+
+                //Make sure angle is one of 0, 90, 180, 270
+                if (memberAngle < 0)
                 {
-                    Position memberPosition = soldiers.get(i).getPosition();
-                    int memberX = memberPosition.getX() - myWorldPosition.getX();
-                    int memberY = memberPosition.getY() - myWorldPosition.getY();
-                    int memberAngle = memberPosition.getAngle() - myWorldPosition.getAngle();
-
-                    //Make sure angle is one of 0, 90, 180, 270
-                    if (memberAngle < 0)
-                    {
-                        memberAngle += 360;     //should never hit this
-                    }
-                    if (memberAngle==0)
-                        teamKey += Integer.toString(memberX) + Integer.toString(memberY) + "000";
-                    else if(memberAngle==90)
-                        teamKey += Integer.toString(memberX) + Integer.toString(memberY) + "090";
-                    else
-                        teamKey += Integer.toString(memberX) + Integer.toString(memberY) + Integer.toString(memberAngle);
-
-
+                    memberAngle += 360;     //should never hit this
                 }
+                if (memberAngle==0)
+                    teamKey += Integer.toString(memberX) + Integer.toString(memberY) + "000";
+                else if(memberAngle==90)
+                    teamKey += Integer.toString(memberX) + Integer.toString(memberY) + "090";
+                else
+                    teamKey += Integer.toString(memberX) + Integer.toString(memberY) + Integer.toString(memberAngle);
+
+
+            }
         }
 
 
-
+        //String key =  teamKey + enemiesKey + Integer.toString(sizeOfEnvironmentX-position.getX()) + Integer.toString(sizeOfEnvironmentY-position.getY()) + Integer.toString(position.getAngle());  //
+         String key =refKey + teamKey + enemiesKey;
+        //System.out.print(key+"\n");
         //Generate and return the state key
-        return refKey + teamKey + enemiesKey;
+        return key;
+
+
     }
 
     public Position getPosition() {

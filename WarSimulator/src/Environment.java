@@ -35,15 +35,13 @@ public class Environment {
 
     public void initializeGame(){
 
-
-
         for(int i=0; i<(numberOfTeams*numberOfSoldiersPerTeam); i++){
 
                 //TODO Set the positions for team 0
                 if(soldiers[i].getTeamIdentifier()==0){
-                   soldiers[i].prepareForNewGame(new Position(1, sizeOfEnvironmentY - i - 1, 0));
+                   soldiers[i].prepareForNewGame(new Position(2,sizeOfEnvironmentY-i-1,0));
                 }else{
-                   soldiers[i].prepareForNewGame(new Position(sizeOfEnvironmentX - 1, sizeOfEnvironmentY - i - 1, 180));
+                   soldiers[i].prepareForNewGame(new Position(sizeOfEnvironmentX-1,sizeOfEnvironmentY-i-1,180));
                 }
 
         }//for
@@ -57,10 +55,17 @@ public class Environment {
 
         for (Soldier a:soldiers) {
             if(a.getTeamIdentifier()==doingTheHurting.getTeamIdentifier())
-                currentRewards.rewardTeam(a.getIdentifier(),1.0); //Reward team b
+                if(a.getTeamIdentifier()==doingTheHurting.getIdentifier())
+                    currentRewards.setSoldierReward(a.getIdentifier(),1.0+currentRewards.getSoldierReward(a.getIdentifier())); //Reward team b
+                else{
+                    currentRewards.setSoldierReward(a.getIdentifier(),0.0+currentRewards.getSoldierReward(a.getIdentifier())); //Reward team b
+                }
             else if(a.getTeamIdentifier()==gotHurt.getTeamIdentifier())
-                currentRewards.rewardTeam(a.getIdentifier(),-1.0); //Hurt team a
-
+                if(a.getTeamIdentifier()==gotHurt.getIdentifier())
+                    currentRewards.setSoldierReward(a.getIdentifier(),-1.0+currentRewards.getSoldierReward(a.getIdentifier())); //Reward team b
+                else{
+                    currentRewards.setSoldierReward(a.getIdentifier(),-0.5+currentRewards.getSoldierReward(a.getIdentifier())); //Reward team b
+                }
             }
     }
 
@@ -163,7 +168,7 @@ public class Environment {
         for (Soldier a : soldiers){
             double rewardForA = currentRewards.getSoldierReward(a.getIdentifier());
 
-            Position moveForA = a.move(rewardForA, getSoldiers(),  sizeOfEnvironmentX,  sizeOfEnvironmentY);
+            Position moveForA = a.move(rewardForA, new ArrayList<Soldier>(Arrays.asList(getSoldiers())));
 
             moveList.add(moveForA);
         }
@@ -204,7 +209,7 @@ public class Environment {
 
                     if(arePositionsEqual(ai,aj)){
 
-                        //System.out.printf("conflict with S%d and S%d \n\n\n\n\n\n",i,j);
+                        //System.out.printf("conflict with S%d and S%d \n\n",i,j);
                         Random random = new Random();
                         int whogetsit = random.nextInt(1);  // gives either a 0, 1, 2, or 3
                         if(whogetsit==0){
@@ -250,8 +255,8 @@ public class Environment {
         Environment.numberOfSoldiersPerTeam = numberOfSoldiersPerTeam;
     }
 
-    public ArrayList<Soldier> getSoldiers() {
-        return new ArrayList<Soldier>(Arrays.asList(soldiers));
+    public Soldier[] getSoldiers() {
+        return soldiers;
     }
     public ArrayList<Position> getSoldierPositions() {
 
