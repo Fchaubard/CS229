@@ -228,7 +228,7 @@ public class SmartSoldier implements Soldier{
 
             if (potentialMoves.size()!=4)
                 a=1;     //for debugging purposes
-            if (max.doubleValue()>1.0){
+            if (max>1.0){
                 a=1;   //for debugging purposes
             }
             //System.out.printf("actionValue 0=%f, 1=%f, 2=%f, 3=%f \n\n", actionValues[0],actionValues[1],actionValues[2],actionValues[3]);
@@ -256,7 +256,7 @@ public class SmartSoldier implements Soldier{
         //Calculate world coordinates reference key
         int refX = -worldRefPos.getX() + myWorldPosition.getX();
         int refY = -worldRefPos.getY() + myWorldPosition.getY();
-        int refAngle = -worldRefPos.getY() + myWorldPosition.getAngle();
+        int refAngle = -worldRefPos.getAngle() + myWorldPosition.getAngle();
 
         //Make sure angle is one of 0, 90, 180, 270
         if (refAngle < 0)
