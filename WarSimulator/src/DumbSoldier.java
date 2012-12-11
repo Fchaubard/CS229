@@ -16,9 +16,10 @@ public class DumbSoldier implements Soldier {
     private  int teamIdentifier;
     private Position position;
     private int score=0;
-    private boolean reallyDumb=true;
     private int sizeOfEnvironmentX;
     private int sizeOfEnvironmentY;
+    private Q qMatrix = new Q();
+    private boolean reallyDumb=true;
 
     public DumbSoldier(int identifier, int teamIdentifier, Position position, int sizeOfEnvironmentX, int sizeOfEnvironmentY) {
         this.setIdentifier(identifier);
@@ -135,6 +136,13 @@ public class DumbSoldier implements Soldier {
 
     public void setScore(int score) {
         this.score = score;
+    }
+    public Q getQMatrix() {
+        return qMatrix;
+    }
+
+    public void setQMatrix(Q qMatrix) {
+        this.qMatrix = qMatrix;
     }
 
 }

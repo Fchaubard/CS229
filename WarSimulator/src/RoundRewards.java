@@ -27,12 +27,13 @@ public class RoundRewards {
         }
     }   */
 
+    // Constructor
     public RoundRewards(int numberOfSoldiers)
     {
-        rewards = new ArrayList<Double>();
+        this.rewards = new ArrayList<Double>();
         for (int i = 0; i < numberOfSoldiers; ++i)
         {
-            rewards.add(i, 0.0);
+            this.rewards.add(i, 0.0);
 
         }
     }
@@ -40,19 +41,19 @@ public class RoundRewards {
     //Methods
     public Double getSoldierReward(int soldierNumber)
     {
-        return rewards.get(soldierNumber);
+        return this.rewards.get(soldierNumber);
     }
 
     public void setSoldierReward(int soldierNumber, Double reward)
     {
-        rewards.set(soldierNumber, reward);
+        this.rewards.set(soldierNumber, reward);
     }
 
 
 
     public void punishInactivity(Double uniformPunishment)
     {
-        for(Double a: rewards)
+        for(Double a: this.rewards)
         {
               a-=uniformPunishment;
         }

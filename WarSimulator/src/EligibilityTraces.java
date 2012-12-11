@@ -17,7 +17,7 @@ public class EligibilityTraces {
     //Constructors
     public EligibilityTraces(Double theLambda, Double theGamma)
     {
-        traces = new HashMap<String, Double[]>();
+        this.traces = new HashMap<String, Double[]>();
         lambda = theLambda;
         gamma = theGamma;
     }
@@ -26,26 +26,26 @@ public class EligibilityTraces {
     public void addTrace(String stateKey, int action)
     {
         //Look up potential existing trace
-        if (traces.containsKey(stateKey))
+        if (this.traces.containsKey(stateKey))
         {
             //TODO think through this update thoroughly
             //Update trace using truncated update
-            Double[] trace = traces.get(stateKey);
+            Double[] trace = this.traces.get(stateKey);
             trace[action] = 1.0;
-            traces.put(stateKey,trace);
+            this.traces.put(stateKey,trace);
         }
         else
         {
             Double[] trace = {0.0, 0.0, 0.0, 0.0};
             trace[action] = 1.0;
-            traces.put(stateKey, trace);
+            this.traces.put(stateKey, trace);
         }
     }
 
     public void updateTraces()
     {
         //TODO remove the trace when it goes below a threshold
-        for(Double[] e:traces.values())
+        for(Double[] e:this.traces.values())
         {
             for(int i = 0; i < 4; ++i)
             {
@@ -59,9 +59,9 @@ public class EligibilityTraces {
     {
 
         //Retrieve trace
-        if (traces.containsKey(stateKey))
+        if (this.traces.containsKey(stateKey))
         {
-            return traces.get(stateKey)[action];
+            return this.traces.get(stateKey)[action];
         }
         else
         {
@@ -72,9 +72,9 @@ public class EligibilityTraces {
 
     public void updateQMatrix(Q qMatrix, Double delta ,Double learningRate)
     {
-        for(String key:traces.keySet())
+        for(String key:this.traces.keySet())
         {
-            Double[] actionTrace = traces.get(key);
+            Double[] actionTrace = this.traces.get(key);
             Double[] actionQValues = qMatrix.getStateActionValues(key);
             for(int i = 0; i < 4; ++i)
             {

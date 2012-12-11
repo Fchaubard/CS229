@@ -20,6 +20,10 @@ public class Environment {
     private static double inactivityPunishment;
     private GameState currentPositions;
     private RoundRewards currentRewards;
+    private static double rewardForHurting                 = 1.0;
+    private static double rewardForBeingOnTeamOfHurting    = 0.5;
+    private static double rewardForHurt                    = -1.0;
+    private static double rewardForBeingOnTeamOfHurt       = -0.5;
 
     public Environment(int numberOfTeams, int numberOfSoldiersPerTeam, Soldier[] initial_Soldiers, int stepLimit, int sizeOfEnvironmentX, int sizeOfEnvironmentY, double inactivityPunishment) {
         this.setCurrentStep(-1);
@@ -53,20 +57,26 @@ public class Environment {
         doingTheHurting.setScore(doingTheHurting.getScore()+1);
         System.out.printf("Soldier %d hurt soldier %d\n", doingTheHurting.getIdentifier(), gotHurt.getIdentifier());
 
+
+
         for (Soldier a:soldiers) {
             if(a.getTeamIdentifier()==doingTheHurting.getTeamIdentifier())
-                if(a.getTeamIdentifier()==doingTheHurting.getIdentifier())
-                    currentRewards.setSoldierReward(a.getIdentifier(),1.0+currentRewards.getSoldierReward(a.getIdentifier())); //Reward team b
+            {
+                if(a.getIdentifier()==doingTheHurting.getIdentifier())
+                    currentRewards.setSoldierReward(a.getIdentifier(),rewardForHurting+currentRewards.getSoldierReward(a.getIdentifier())); //Reward team b
                 else{
-                    currentRewards.setSoldierReward(a.getIdentifier(),0.0+currentRewards.getSoldierReward(a.getIdentifier())); //Reward team b
-                }
-            else if(a.getTeamIdentifier()==gotHurt.getTeamIdentifier())
-                if(a.getTeamIdentifier()==gotHurt.getIdentifier())
-                    currentRewards.setSoldierReward(a.getIdentifier(),-1.0+currentRewards.getSoldierReward(a.getIdentifier())); //Reward team b
-                else{
-                    currentRewards.setSoldierReward(a.getIdentifier(),-0.5+currentRewards.getSoldierReward(a.getIdentifier())); //Reward team b
+                    currentRewards.setSoldierReward(a.getIdentifier(),rewardForBeingOnTeamOfHurting+currentRewards.getSoldierReward(a.getIdentifier())); //Reward team b
                 }
             }
+            else if(a.getTeamIdentifier()==gotHurt.getTeamIdentifier())
+            {
+                if(a.getIdentifier()==gotHurt.getIdentifier())
+                    currentRewards.setSoldierReward(a.getIdentifier(),rewardForHurt+currentRewards.getSoldierReward(a.getIdentifier())); //Reward team b
+                else{
+                    currentRewards.setSoldierReward(a.getIdentifier(),rewardForBeingOnTeamOfHurt+currentRewards.getSoldierReward(a.getIdentifier())); //Reward team b
+                }
+            }
+        }
     }
 
     public void determineRewards(){
@@ -157,6 +167,20 @@ public class Environment {
             return;
         }
 
+
+        //ensure that no positions are equal, this issue was popping up before
+        for (int i=0; i<soldiers.length; i++){
+            for (int j=0; j<soldiers.length; j++){
+                if(i!=j){
+                    if(arePositionsEqual(soldiers[i].getPosition(),soldiers[j].getPosition())){
+
+
+                        System.out.print("soldiers positions are overlapping\n");
+                    }
+                }
+            }
+        }
+
         // Step the game by 1
         this.setCurrentStep(this.getCurrentStep()+1);
 
@@ -175,6 +199,18 @@ public class Environment {
 
         // Do move rectification
         moveRectification(moveList);
+
+        for (int i=0; i<soldiers.length; i++){
+            for (int j=0; j<soldiers.length; j++){
+                if(i!=j){
+                    if(arePositionsEqual(moveList.get(i),moveList.get(j))){
+                       System.out.print("move list positions are overlapping\n");
+                           i=1231;
+
+                    }
+                }
+            }
+        }
 
         // Commit Moves
         for (int i=0; i<soldiers.length; i++){
@@ -200,30 +236,47 @@ public class Environment {
     public ArrayList arePositionsUnique(ArrayList<Position> list){
         boolean positionsArentEqual=false;
 
-        // ensure of the positions are equal by putting them into a set
+        // ensure the positions arent equal by putting them into a set
         for (int i=0; i<list.size(); i++){
-            for (int j=0; j<list.size(); j++){
+            for (int j=0; j<i; j++){
                 if(i!=j){
                     Position ai = list.get(i);
                     Position aj = list.get(j);
 
                     if(arePositionsEqual(ai,aj)){
+                        boolean isAiMoving = !arePositionsEqual(ai,getSoldier(i).getPosition()); //yes if soldier i is moving
+                        boolean isAjMoving = !arePositionsEqual(aj,getSoldier(j).getPosition());
 
+                        // not moving takes precedence over someone moving into another!
                         //System.out.printf("conflict with S%d and S%d \n\n",i,j);
                         Random random = new Random();
                         int whogetsit = random.nextInt(1);  // gives either a 0, 1, 2, or 3
-                        if(whogetsit==0){
-                            // Randomly give it to a
-                            list.set(i,ai);
-                            list.set(j,getSoldier(j).getPosition());   //keep at current position
-                        }else if(whogetsit==1){
-                            // Randomly give it to b
-                            list.set(j,aj);
-                            list.set(i,getSoldier(i).getPosition());  //keep at current position
-                        }else{
-                            System.out.print("issue with random");
+                        // when they are both moving
+                        if(isAiMoving && isAjMoving){
+                            if(whogetsit==0){
+                                // Randomly give it to ai
+                                list.set(i,ai);
+                                list.set(j,getSoldier(j).getPosition());   //keep at current position
+                            }else if(whogetsit==1){
+                                // Randomly give it to aj
+                                list.set(j,aj);
+                                list.set(i,getSoldier(i).getPosition());  //keep at current position
+                            }else{
+                                System.out.print("issue with random");
+                            }
                         }
+                        else if((isAiMoving && !isAjMoving)){       // when only j is moving
 
+                            list.set(i,getSoldier(i).getPosition());   //keep at current position
+
+                        }else if((!isAiMoving && isAjMoving)){       // when only j is moving
+
+                            list.set(j,getSoldier(j).getPosition());   //keep at current position
+
+                        }
+                        else{
+                            System.out.print("already at same position, not good");
+                        }
                     }
                 }
             }

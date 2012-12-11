@@ -58,72 +58,74 @@ public class SmartSoldier implements Soldier{
         this.sizeOfEnvironmentX = sizeOfEnvironmentX;
         this.sizeOfEnvironmentY = sizeOfEnvironmentY;
 
-        worldRefPos = theWorldRefPos;
-        learningRate = theLearningRate;
-        lambda = theLambda;
-        gamma = theGamma;
-        epsilon = theEpsilon;
-        qMatrix = new Q();
-        traces = new EligibilityTraces(lambda, gamma);
-        currentStateKey = "";
-        previousStateKey = "";
-        //sizeOfEnvironmentX = theSizeOfEnvironmentX;
-        //sizeOfEnvironmentY = theSizeOfEnvironmentY;
+        this.worldRefPos = theWorldRefPos;
+        this.learningRate = theLearningRate;
+        this.lambda = theLambda;
+        this.gamma = theGamma;
+        this.epsilon = theEpsilon;
+        this.qMatrix = new Q();
+        this.traces = new EligibilityTraces(lambda, gamma);
+        this.currentStateKey = "";
+        this.previousStateKey = "";
 
     }
 
     public void prepareForNewGame(Position startPosition )
     {
         setScore(0);
-        position = startPosition;
-        currentStateKey = "";
-        previousStateKey = "";
-        previousChoice = 0;
-        traces = new EligibilityTraces(lambda, gamma);
+        this.position = startPosition;
+        this.currentStateKey = "";
+        this.previousStateKey = "";
+        this.previousChoice = 0;
+        this.traces = new EligibilityTraces(lambda, gamma);
     }
 
 
     private void learn(Double newReward)
         {
             //Calculate new delta (temporal difference?)
-            int provisionalChoice = makeEGreedyChoice(currentStateKey);
-            Double tempDiff = newReward + gamma*qMatrix.getQValue(currentStateKey,provisionalChoice)
-                                        - qMatrix.getQValue(previousStateKey,previousChoice);
+            int provisionalChoice = this.makeEGreedyChoice(this.currentStateKey);
+            Double tempDiff = newReward + gamma*this.qMatrix.getQValue(this.currentStateKey,provisionalChoice)
+                                        - this.qMatrix.getQValue(this.previousStateKey,this.previousChoice);
 
             //Update
-            traces.updateQMatrix(qMatrix,tempDiff,learningRate);
-            traces.updateTraces();
+            this.traces.updateQMatrix(this.qMatrix,tempDiff,learningRate);
+            this.traces.updateTraces();
         }
 
     public Position move(Double newReward, ArrayList<Soldier> soldiers){
 
 
         //Update state
-        currentStateKey = calculateLocalStateKey(soldiers);
+        currentStateKey = this.calculateLocalStateKey(soldiers);
 
 
         //Learn from experience if not first play of the game
         if (!previousStateKey.equals(""))
         {
-          learn(newReward);
+            this.learn(newReward);
         }
 
         //Make choice and leave trace
-        int newChoice =  makeEGreedyChoice(currentStateKey);
-        previousChoice = newChoice;
-        previousStateKey = currentStateKey;
-        traces.addTrace(previousStateKey,previousChoice);  //This was missing before
+        int newChoice =  this.makeEGreedyChoice(currentStateKey);
+        this.previousChoice = newChoice;
+        this.previousStateKey = this.currentStateKey;
+        this.traces.addTrace(this.previousStateKey,this.previousChoice);  //This was missing before
 
 
-        return convertChoiceToPosition(newChoice);
+        return this.convertChoiceToPosition(newChoice);
 
     }
 
 
     private Position convertChoiceToPosition(int choice)
     {
-        Position newPosition = position;
+        int x=this.position.getX();
+        int y=this.position.getY();
+        int a=this.position.getAngle();
 
+        Position newPosition = new Position(this.position);
+        boolean jumpingOverEdge = false;
 
         switch(choice) {
             case 0:    // Attack
@@ -132,49 +134,53 @@ public class SmartSoldier implements Soldier{
                 break;
             case 1:   // Go left
 
-                newPosition.setAngle(position.getAngle()+90);
+                newPosition.setAngle(a+90);
                 break;
             case 2:   // Go right
 
-                newPosition.setAngle(position.getAngle()-90);
+                newPosition.setAngle(a-90);
                 break;
             case 3:  // Move Forward
 
                 switch(newPosition.getAngle()) {
                     case 0:
                         if(newPosition.getX()<sizeOfEnvironmentX-1){
-                            newPosition.setX(position.getX()+1);
+                            newPosition.setX(x+1);
                         }
                         else{
                             //System.out.print("trying to jump over the edge!\n");
+                            jumpingOverEdge = true;
                         }
                         break;
                     case 90:
                         if(newPosition.getY()<sizeOfEnvironmentY-1){
-                            newPosition.setY(position.getY()+1);
+                            newPosition.setY(y+1);
                         }
                         else{
                             //System.out.print("trying to jump over the edge!\n");
+                            jumpingOverEdge = true;
                         }
                         break;
                     case 180:
                         if(newPosition.getX()>0){
-                            newPosition.setX(position.getX()-1);
+                            newPosition.setX(x-1);
                         }
                         else{
                             //System.out.print("trying to jump over the edge!\n");
+                            jumpingOverEdge = true;
                         }
                         break;
                     case 270:
                         if(newPosition.getY()>0){
-                            newPosition.setY(position.getY()-1);
+                            newPosition.setY(y-1);
                         }
                         else{
                             //System.out.print("trying to jump over the edge!\n");
+                            jumpingOverEdge = true;
                         }
                         break;
                     default:
-                        // System.out.printf("not a valid angle %d", newPosition.getAngle());
+                         System.out.printf("not a valid angle %d", newPosition.getAngle());
                 }
                 break;
             default: System.out.print("Invalid move");
@@ -183,6 +189,9 @@ public class SmartSoldier implements Soldier{
 
         }
 
+        if(!jumpingOverEdge&&(newPosition.getAngle()==position.getAngle())&&(newPosition.getX()==position.getX())&&(newPosition.getY()==position.getY())&&choice!=0) {
+            System.out.print("big issue");
+        }
         // Submit the newPosition
         return newPosition;
     }
@@ -198,7 +207,7 @@ public class SmartSoldier implements Soldier{
             return random.nextInt(4);
         } else
         {
-            Double[] actionValues = qMatrix.getStateActionValues(stateKey);
+            Double[] actionValues = this.qMatrix.getStateActionValues(stateKey);
 
             //Find integer with maximum Q-value
             int move = 0;
@@ -242,7 +251,7 @@ public class SmartSoldier implements Soldier{
         String refKey = "";
         String enemiesKey = "";
 
-        Position myWorldPosition = position;//positions.get(identifier);
+        Position myWorldPosition = this.position;//positions.get(identifier);
 
         //Calculate world coordinates reference key
         int refX = -worldRefPos.getX() + myWorldPosition.getX();
@@ -267,7 +276,7 @@ public class SmartSoldier implements Soldier{
         {
 
             //Enemies
-            if (soldiers.get(i).getTeamIdentifier() != teamIdentifier)
+            if (soldiers.get(i).getTeamIdentifier() != this.teamIdentifier)
             {
                 Position enemyPosition = soldiers.get(i).getPosition();
                 int enemyX = enemyPosition.getX() - myWorldPosition.getX();
@@ -289,7 +298,7 @@ public class SmartSoldier implements Soldier{
 
             }
             //Team mates
-            else if (soldiers.get(i).getIdentifier() != identifier)
+            else if (soldiers.get(i).getIdentifier() != this.identifier)
             {
                 Position memberPosition = soldiers.get(i).getPosition();
                 int memberX = memberPosition.getX() - myWorldPosition.getX();
@@ -352,6 +361,12 @@ public class SmartSoldier implements Soldier{
     public void setScore(int score) {
         this.score = score;
     }
+    public Q getQMatrix() {
+        return qMatrix;
+    }
 
+    public void setQMatrix(Q qMatrix) {
+        this.qMatrix = qMatrix;
+    }
 
 }

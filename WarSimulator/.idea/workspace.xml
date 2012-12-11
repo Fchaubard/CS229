@@ -2,21 +2,32 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a96aaf79-309f-4493-b933-1c64d6e6e290" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/WarSimulator/Checkerboard$1.class" afterPath="$PROJECT_DIR$/out/production/WarSimulator/Checkerboard$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/WarSimulator/Checkerboard.class" afterPath="$PROJECT_DIR$/out/production/WarSimulator/Checkerboard.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/WarSimulator/DumbSoldier.class" afterPath="$PROJECT_DIR$/out/production/WarSimulator/DumbSoldier.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/WarSimulator/Environment.class" afterPath="$PROJECT_DIR$/out/production/WarSimulator/Environment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/WarSimulator/RoundRewards.class" afterPath="$PROJECT_DIR$/out/production/WarSimulator/RoundRewards.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/WarSimulator/SmartSoldier.class" afterPath="$PROJECT_DIR$/out/production/WarSimulator/SmartSoldier.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/EnvironmentTest.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Checkerboard.java" afterPath="$PROJECT_DIR$/src/Checkerboard.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DumbSoldier.java" afterPath="$PROJECT_DIR$/src/DumbSoldier.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/EligibilityTraces.java" afterPath="$PROJECT_DIR$/src/EligibilityTraces.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Environment.java" afterPath="$PROJECT_DIR$/src/Environment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Position.java" afterPath="$PROJECT_DIR$/src/Position.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Q.java" afterPath="$PROJECT_DIR$/src/Q.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/RoundRewards.java" afterPath="$PROJECT_DIR$/src/RoundRewards.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SmartSoldier.java" afterPath="$PROJECT_DIR$/src/SmartSoldier.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Soldier.java" afterPath="$PROJECT_DIR$/src/Soldier.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WarSimulator.iml" afterPath="$PROJECT_DIR$/WarSimulator.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="WarSimulator.iws" />
     <ignored path=".idea/workspace.xml" />
+    <file path="/Dummy.txt" changelist="a96aaf79-309f-4493-b933-1c64d6e6e290" time="1355104189640" ignored="false" />
+    <file path="/fragment.java" changelist="a96aaf79-309f-4493-b933-1c64d6e6e290" time="1355104580692" ignored="false" />
+    <file path="/Checkerboard.java" changelist="a96aaf79-309f-4493-b933-1c64d6e6e290" time="1355185919959" ignored="false" />
+    <file path="/DumbSoldier.java" changelist="a96aaf79-309f-4493-b933-1c64d6e6e290" time="1355183703013" ignored="false" />
+    <file path="/Environment.java" changelist="a96aaf79-309f-4493-b933-1c64d6e6e290" time="1355182418785" ignored="false" />
+    <file path="/SmartSoldier.java" changelist="a96aaf79-309f-4493-b933-1c64d6e6e290" time="1355186992567" ignored="false" />
+    <file path="/Position.java" changelist="a96aaf79-309f-4493-b933-1c64d6e6e290" time="1355120931986" ignored="false" />
+    <file path="/Soldier.java" changelist="a96aaf79-309f-4493-b933-1c64d6e6e290" time="1355183750701" ignored="false" />
+    <file path="/RoundRewards.java" changelist="a96aaf79-309f-4493-b933-1c64d6e6e290" time="1355190113587" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,74 +42,65 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
-    <line_breakpoints>
-      <breakpoint url="file://$PROJECT_DIR$/src/SmartSoldier.java" line="202" class="SmartSoldier" package="">
+    <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true">
+      <breakpoint url="file://$PROJECT_DIR$/src/Environment.java" line="177" class="Environment" package="">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
         <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
         <option name="COUNT_FILTER_ENABLED" value="false" />
         <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="false" />
+        <option name="CONDITION_ENABLED" value="true" />
         <option name="CLASS_FILTERS_ENABLED" value="false" />
         <option name="INSTANCE_FILTERS_ENABLED" value="false" />
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/SmartSoldier.java" line="217" class="SmartSoldier" package="">
+      <breakpoint url="file://$PROJECT_DIR$/src/Environment.java" line="277" class="Environment" package="">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
         <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
         <option name="COUNT_FILTER_ENABLED" value="false" />
         <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="false" />
+        <option name="CONDITION_ENABLED" value="true" />
         <option name="CLASS_FILTERS_ENABLED" value="false" />
         <option name="INSTANCE_FILTERS_ENABLED" value="false" />
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/EligibilityTraces.java" line="78" class="EligibilityTraces" package="">
+      <breakpoint url="file://$PROJECT_DIR$/src/Environment.java" line="207" class="Environment" package="">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
         <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
         <option name="COUNT_FILTER_ENABLED" value="false" />
         <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="false" />
+        <option name="CONDITION_ENABLED" value="true" />
         <option name="CLASS_FILTERS_ENABLED" value="false" />
         <option name="INSTANCE_FILTERS_ENABLED" value="false" />
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/SmartSoldier.java" line="82" class="SmartSoldier" package="">
+      <breakpoint url="file://$PROJECT_DIR$/src/SmartSoldier.java" line="192" class="SmartSoldier" package="">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
         <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
         <option name="COUNT_FILTER_ENABLED" value="false" />
         <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="false" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/SmartSoldier.java" line="90" class="SmartSoldier" package="">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="false" />
+        <option name="CONDITION_ENABLED" value="true" />
         <option name="CLASS_FILTERS_ENABLED" value="false" />
         <option name="INSTANCE_FILTERS_ENABLED" value="false" />
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </line_breakpoints>
-    <breakpoint_any>
+    <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
         <option name="NOTIFY_UNCAUGHT" value="true" />
@@ -106,6 +108,7 @@
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
         <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
         <option name="COUNT_FILTER_ENABLED" value="false" />
         <option name="COUNT_FILTER" value="0" />
         <option name="CONDITION_ENABLED" value="false" />
@@ -121,6 +124,7 @@
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
         <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
         <option name="COUNT_FILTER_ENABLED" value="false" />
         <option name="COUNT_FILTER" value="0" />
         <option name="CONDITION_ENABLED" value="false" />
@@ -130,14 +134,112 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
+    <breakpoint_rules default_suspend_policy="SuspendAll" default_condition_enabled="true" />
+    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_rules />
     <ui_properties />
   </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="WarSimulator" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="Checkerboard.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Checkerboard.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="21" column="29" selection-start="827" selection-end="828" vertical-scroll-proportion="1.4642857">
+              <folding>
+                <element signature="e#6349#6358#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Position.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Position.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="14" column="31" selection-start="339" selection-end="339" vertical-scroll-proportion="-1.9090909">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EligibilityTraces.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/EligibilityTraces.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="52" column="34" selection-start="1364" selection-end="1364" vertical-scroll-proportion="-5.230769">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Environment.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Environment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="181" column="9" selection-start="8827" selection-end="8827" vertical-scroll-proportion="2.3076923">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Soldier.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Soldier.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="25" column="18" selection-start="765" selection-end="765" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Q.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Q.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="67" column="43" selection-start="1714" selection-end="1714" vertical-scroll-proportion="-7.6538463">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RoundRewards.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/RoundRewards.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="46" column="32" selection-start="1049" selection-end="1065" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SmartSoldier.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/SmartSoldier.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="105" column="47" selection-start="3163" selection-end="3163" vertical-scroll-proportion="0.56060606">
+              <folding>
+                <element signature="e#6941#6950#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DumbSoldier.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/DumbSoldier.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="143" column="38" selection-start="4317" selection-end="4351" vertical-scroll-proportion="-5.923077">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Matlab_Input_File.txt" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Matlab_Input_File.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="70000" column="0" selection-start="903990" selection-end="903990" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -147,24 +249,30 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="GitLogSettings">
+    <option name="myDateState">
+      <MyDateState />
+    </option>
+  </component>
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/TestEnvironment.java" />
         <option value="$PROJECT_DIR$/src/TestEnvironmentTest.java" />
         <option value="$PROJECT_DIR$/src/gameStart.java" />
         <option value="$PROJECT_DIR$/src/CheckerboardPanel.java" />
-        <option value="$PROJECT_DIR$/src/Position.java" />
         <option value="$PROJECT_DIR$/src/src_niko/Soldier.java" />
         <option value="$PROJECT_DIR$/src/src_niko/SmartSoldier.java" />
         <option value="$PROJECT_DIR$/src/EnvironmentTest.java" />
-        <option value="$PROJECT_DIR$/src/Q.java" />
-        <option value="$PROJECT_DIR$/src/Soldier.java" />
+        <option value="$PROJECT_DIR$/Matlab_Input_File.txt" />
+        <option value="$PROJECT_DIR$/src/Position.java" />
+        <option value="$PROJECT_DIR$/src/EligibilityTraces.java" />
+        <option value="$PROJECT_DIR$/src/Environment.java" />
         <option value="$PROJECT_DIR$/src/DumbSoldier.java" />
+        <option value="$PROJECT_DIR$/src/Soldier.java" />
+        <option value="$PROJECT_DIR$/src/Q.java" />
+        <option value="$PROJECT_DIR$/src/SmartSoldier.java" />
         <option value="$PROJECT_DIR$/src/Checkerboard.java" />
         <option value="$PROJECT_DIR$/src/RoundRewards.java" />
-        <option value="$PROJECT_DIR$/src/Environment.java" />
-        <option value="$PROJECT_DIR$/src/SmartSoldier.java" />
       </list>
     </option>
   </component>
@@ -172,10 +280,25 @@
     <option name="jreName" value="#JAVA_INTERNAL" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="160" />
-    <option name="y" value="80" />
-    <option name="width" value="1168" />
-    <option name="height" value="714" />
+    <option name="y" value="22" />
+    <option name="width" value="1280" />
+    <option name="height" value="711" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>Abstraction issues</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -220,7 +343,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -255,29 +377,23 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="project.structure.last.edited" value="Project" />
     <property name="GoToFile.includeJavaFiles" value="false" />
-    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
-    <property name="OverrideImplement.combined" value="true" />
-    <property name="project.structure.proportion" value="0.11933173" />
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="options.lastSelected" value="editor.preferences.appearance" />
     <property name="MemberChooser.sorted" value="false" />
     <property name="recentsLimit" value="5" />
-    <property name="project.structure.side.proportion" value="0.20802535" />
+    <property name="options.lastSelected" value="editor.preferences.import" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.includeInheritedMembers" value="false" />
-    <property name="FullScreen" value="false" />
+    <property name="restartRequiresConfirmation" value="true" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="options.searchVisible" value="true" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="dynamic.classpath" value="false" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.RecentsKey">
@@ -338,12 +454,7 @@
       <module name="" />
       <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m" />
       <option name="PROGRAM_PARAMETERS" />
-      <method>
-        <option name="AntTarget" enabled="false" />
-        <option name="BuildArtifacts" enabled="false" />
-        <option name="Make" enabled="true" />
-        <option name="Maven.BeforeRunTask" enabled="false" />
-      </method>
+      <method />
     </configuration>
     <configuration default="true" type="Remote" factoryName="Remote">
       <option name="USE_SOCKET_TRANSPORT" value="true" />
@@ -351,29 +462,7 @@
       <option name="SHMEM_ADDRESS" value="javadebug" />
       <option name="HOST" value="localhost" />
       <option name="PORT" value="5005" />
-      <method>
-        <option name="AntTarget" enabled="false" />
-        <option name="BuildArtifacts" enabled="false" />
-        <option name="Maven.BeforeRunTask" enabled="false" />
-      </method>
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <method>
-        <option name="AntTarget" enabled="false" />
-        <option name="BuildArtifacts" enabled="false" />
-        <option name="Make" enabled="true" />
-        <option name="Maven.BeforeRunTask" enabled="false" />
-      </method>
+      <method />
     </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
@@ -401,16 +490,24 @@
       <envs />
       <properties />
       <listeners />
-      <method>
-        <option name="AntTarget" enabled="false" />
-        <option name="BuildArtifacts" enabled="false" />
-        <option name="Make" enabled="true" />
-        <option name="Maven.BeforeRunTask" enabled="false" />
-      </method>
+      <method />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" value="TriangleArray" />
+      <option name="MAIN_CLASS_NAME" value="Checkerboard" />
       <option name="VM_PARAMETERS" value="" />
       <option name="PROGRAM_PARAMETERS" value="" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
@@ -421,12 +518,7 @@
       <option name="PASS_PARENT_ENVS" value="true" />
       <module name="WarSimulator" />
       <envs />
-      <method>
-        <option name="AntTarget" enabled="false" />
-        <option name="BuildArtifacts" enabled="false" />
-        <option name="Make" enabled="true" />
-        <option name="Maven.BeforeRunTask" enabled="false" />
-      </method>
+      <method />
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
@@ -447,12 +539,7 @@
       </option>
       <envs />
       <patterns />
-      <method>
-        <option name="AntTarget" enabled="false" />
-        <option name="BuildArtifacts" enabled="false" />
-        <option name="Make" enabled="true" />
-        <option name="Maven.BeforeRunTask" enabled="false" />
-      </method>
+      <method />
     </configuration>
     <configuration default="false" name="Unnamed" type="Application" factoryName="Application">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
@@ -478,9 +565,9 @@
       <method />
     </configuration>
     <list size="3">
-      <item index="0" class="java.lang.String" itemvalue="Application.TriangleArray" />
-      <item index="1" class="java.lang.String" itemvalue="JUnit.EnvironmentTest" />
-      <item index="2" class="java.lang.String" itemvalue="Application.Unnamed" />
+      <item index="0" class="java.lang.String" itemvalue="Application.Unnamed" />
+      <item index="1" class="java.lang.String" itemvalue="Application.TriangleArray" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.EnvironmentTest" />
     </list>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
       <Host>localhost</Host>
@@ -540,31 +627,31 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="160" y="80" width="1168" height="714" extended-state="0" />
-    <editor active="false" />
+    <frame x="0" y="22" width="1280" height="711" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="JavaEE:App" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3381877" sideWeight="0.97410715" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.44500846" sideWeight="0.83711505" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2893401" sideWeight="0.14100486" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.50423014" sideWeight="0.4667747" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32715008" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23125" sideWeight="0.66104555" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.41315347" sideWeight="0.9318182" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20988655" sideWeight="0.7106599" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2893401" sideWeight="0.8533225" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="JavaEE:App" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.16863406" sideWeight="0.9955654" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3895447" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -591,7 +678,6 @@
     <option name="PERFORM_ADD_REMOVE_IN_BACKGROUND" value="true" />
     <option name="PERFORM_ROLLBACK_IN_BACKGROUND" value="false" />
     <option name="CHECK_LOCALLY_CHANGED_CONFLICTS_IN_BACKGROUND" value="false" />
-    <option name="ENABLE_BACKGROUND_PROCESSES" value="false" />
     <option name="CHANGED_ON_SERVER_INTERVAL" value="60" />
     <option name="SHOW_ONLY_CHANGED_IN_SELECTION_DIFF" value="true" />
     <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="true" />
@@ -601,9 +687,11 @@
     <option name="SOFT_WRAPS_IN_SHORT_DIFF" value="true" />
     <option name="INCLUDE_TEXT_INTO_PATCH" value="false" />
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
-    <option name="CREATE_PATCH_EXPAND_DETAILS_DEFAULT" value="true" />
     <option name="SHOW_FILE_HISTORY_DETAILS" value="true" />
     <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
+    <option name="SHOW_DIRTY_RECURSIVELY" value="false" />
+    <option name="LIMIT_HISTORY" value="true" />
+    <option name="MAXIMUM_HISTORY_ROWS" value="1000" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
     <option name="LAST_COMMIT_MESSAGE" />
@@ -682,24 +770,9 @@
         <state line="17" column="55" selection-start="472" selection-end="472" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Position.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="0" selection-start="388" selection-end="388" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="jar:///Library/Java/JavaVirtualMachines/1.6.0_37-b06-434.jdk/Contents/Home/src.jar!/src/java/util/HashMap.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="296" column="13" selection-start="11737" selection-end="11737" vertical-scroll-proportion="0.33216783" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/EnvironmentTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="132" column="59" selection-start="4279" selection-end="4279" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Soldier.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="11" selection-start="850" selection-end="850" vertical-scroll-proportion="0.64285713" />
       </provider>
     </entry>
     <entry file="jar:///Library/Java/JavaVirtualMachines/1.6.0_37-b06-434.jdk/Contents/Home/src.jar!/src/java/util/ArrayList.java">
@@ -707,52 +780,77 @@
         <state line="335" column="13" selection-start="12645" selection-end="12645" vertical-scroll-proportion="0.33333334" />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Matlab_Input_File.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="70000" column="0" selection-start="903990" selection-end="903990" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Position.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="31" selection-start="339" selection-end="339" vertical-scroll-proportion="-1.9090909">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/DumbSoldier.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="68" selection-start="267" selection-end="267" vertical-scroll-proportion="0.2259887">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Checkerboard.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="38" selection-start="696" selection-end="696" vertical-scroll-proportion="0.028248588">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/SmartSoldier.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="228" column="19" selection-start="6827" selection-end="6827" vertical-scroll-proportion="6.404175">
+        <state line="143" column="38" selection-start="4317" selection-end="4351" vertical-scroll-proportion="-5.923077">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/EligibilityTraces.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="40" selection-start="230" selection-end="230" vertical-scroll-proportion="0.29151943">
+        <state line="52" column="34" selection-start="1364" selection-end="1364" vertical-scroll-proportion="-5.230769">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Q.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="36" selection-start="522" selection-end="522" vertical-scroll-proportion="0.09074074">
+        <state line="67" column="43" selection-start="1714" selection-end="1714" vertical-scroll-proportion="-7.6538463">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Checkerboard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="29" selection-start="827" selection-end="828" vertical-scroll-proportion="1.4642857">
+          <folding>
+            <element signature="e#6349#6358#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/RoundRewards.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="46" column="32" selection-start="1049" selection-end="1065" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Soldier.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="18" selection-start="765" selection-end="765" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Environment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="68" column="45" selection-start="2912" selection-end="2912" vertical-scroll-proportion="0.27124774">
+        <state line="181" column="9" selection-start="8827" selection-end="8827" vertical-scroll-proportion="2.3076923">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/RoundRewards.java">
+    <entry file="file://$PROJECT_DIR$/src/SmartSoldier.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="47" column="17" selection-start="1089" selection-end="1089" vertical-scroll-proportion="0.54946995">
-          <folding />
+        <state line="105" column="47" selection-start="3163" selection-end="3163" vertical-scroll-proportion="0.56060606">
+          <folding>
+            <element signature="e#6941#6950#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

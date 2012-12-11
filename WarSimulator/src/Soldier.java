@@ -20,7 +20,8 @@ public interface Soldier {
     public void setTeamIdentifier(int i);
     public int getScore();
     public void setScore(int i);
-
+    public void setQMatrix(Q qMatrix);
+    public Q getQMatrix();
 
 
 

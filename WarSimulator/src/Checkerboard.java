@@ -1,4 +1,7 @@
 import javax.swing.*;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,14 +10,14 @@ public class Checkerboard {
     private static Environment environment;
     private static int numberOfTeams=2;
     private static int numberOfSoldiersPerTeam=1;
-    private static int stepLimit=100;
-    private static int sizeOfEnvironmentX=10;
-    private static int sizeOfEnvironmentY=10;
-    private static int numberOfGames=5000;
+    private static int stepLimit=10;
+    private static int sizeOfEnvironmentX=5;
+    private static int sizeOfEnvironmentY=5;
+    private static int numberOfGames=70000;
     private static boolean gameOver=false;
     private static boolean showCheckerBoard=false;
     private static Position referencePosition = new Position(0,0,0);
-    private static int gameStyle=3;   //1 dumb v dumb 2 smart v dumb 3 smart v smart
+    private static int gameStyle=1;   //1 dumb v dumb 2 smart v dumb 3 smart v smart
 
     private static double lambda = 0.5;
     private static double gamma = 0.9;
@@ -24,9 +27,11 @@ public class Checkerboard {
     private static ArrayList<ArrayList<Integer>> gameResults = new ArrayList<ArrayList<Integer>>(numberOfGames); //numGames x numSoldiers
 
 
-    public static void main(String[] args){
+    public static void main(String[] args) throws FileNotFoundException {
 
-        if(showCheckerBoard){
+
+
+        if (showCheckerBoard) {
             // show the checkerboard
             Checkerboard checkerboard = new Checkerboard();
 
@@ -42,11 +47,11 @@ public class Checkerboard {
 
         int gameNumber = 0;
         // Game loop
-        while (numberOfGames>gameNumber) {
-            if (environment.getCurrentStep()>=stepLimit){
+        while (numberOfGames > gameNumber) {
+            if (environment.getCurrentStep() >= stepLimit) {
                 // TODO game analysis and breakdown
-                for (Soldier a:environment.getSoldiers())
-                    gameResults.get(gameNumber).set(a.getIdentifier(),a.getScore());
+                for (Soldier a : environment.getSoldiers())
+                    gameResults.get(gameNumber).set(a.getIdentifier(), a.getScore());
 
                 environment.resetGame();
                 environment.initializeGame();
@@ -55,9 +60,9 @@ public class Checkerboard {
 
             }
 
-            System.out.printf("Game %d Step %d ",gameNumber,environment.getCurrentStep());
-            for (Soldier a:environment.getSoldiers()){
-                System.out.printf(" S%d x=%d y=%d a=%d",a.getIdentifier(),a.getPosition().getX(),a.getPosition().getY(),a.getPosition().getAngle());
+            System.out.printf("Game %d Step %d ", gameNumber, environment.getCurrentStep());
+            for (Soldier a : environment.getSoldiers()) {
+                System.out.printf("   S%d x=%d y=%d a=%d", a.getIdentifier(), a.getPosition().getX(), a.getPosition().getY(), a.getPosition().getAngle());
 
             }
             System.out.printf("\n");
@@ -66,7 +71,7 @@ public class Checkerboard {
             // detect collisions and provide responses.
             environment.stepGame();
 
-            if(showCheckerBoard)    {
+            if (showCheckerBoard) {
 
                 // Refresh the display
                 panel.repaint();
@@ -74,19 +79,23 @@ public class Checkerboard {
 
             // Delay timer to provide the necessary delay to meet the target rate.
         }
-        if(showCheckerBoard)    {
+        if (showCheckerBoard) {
 
             // Refresh the display
             panel.repaint();
         }
 
         printResults();
+        printQs();
 
     }// main
 
-    private static void printResults() {
+    private static void printResults() throws FileNotFoundException {
 
+        PrintStream output = new PrintStream(new FileOutputStream(
+                "Matlab_Input_File.txt"));
         System.out.printf("Printing results for each game: \n");
+
         ArrayList<Integer> tally = new ArrayList<Integer>(numberOfSoldiersPerTeam*numberOfTeams);
         for (int soldierNumber=0; soldierNumber<environment.getSoldiers().length; soldierNumber++){
             tally.add(0);
@@ -94,11 +103,14 @@ public class Checkerboard {
 
         for (int gameNumber=0; gameNumber<gameResults.size(); gameNumber++){
             System.out.printf("%d ",gameNumber);
+            output.printf("%d ",gameNumber);
             for (int soldierNumber=0; soldierNumber<environment.getSoldiers().length; soldierNumber++){
                 System.out.printf(" %d ",gameResults.get(gameNumber).get(soldierNumber));
+                output.printf(" %d ",gameResults.get(gameNumber).get(soldierNumber));
                 tally.set(soldierNumber,(tally.get(soldierNumber)+gameResults.get(gameNumber).get(soldierNumber)));
             }
             System.out.printf("\n");
+            output.printf("\n");
         }
         System.out.printf("-------------------------------\n");
         System.out.printf("Total: \n");
@@ -106,6 +118,39 @@ public class Checkerboard {
             System.out.printf(" %d ",tally.get(soldierNumber));
         }
 
+        output.close();
+    }
+
+    private static void printQs() throws FileNotFoundException {
+
+
+        System.out.printf("\nPrinting Qs: \n");
+
+        for (int soldierNumber=0; soldierNumber<environment.getSoldiers().length; soldierNumber++){
+            try{
+
+                Q q = environment.getSoldier(soldierNumber).getQMatrix();
+                System.out.printf(" Soldier %d \n",soldierNumber);
+                for(String e:q.getqValues().keySet())
+                {
+                    Double[] values=q.getqValues().get(e);
+                    //print interesting things
+                    System.out.printf("%s 0=%f 1=%f 2=%f 3=%f \n",e, values[0],values[1],values[2],values[3]);
+
+                }
+            }catch (Exception e){
+                System.out.printf("probably a dumb soldier %d\n",soldierNumber);
+            }
+        }
+        for (int soldierNumber=0; soldierNumber<environment.getSoldiers().length; soldierNumber++){
+            try{
+                Q q = new Q();
+                q = environment.getSoldier(soldierNumber).getQMatrix();
+                System.out.printf(" Soldier %d qSize=%d\n",soldierNumber,q.getqValues().values().size());
+            }catch (Exception e){
+                System.out.printf("probably a dumb soldier %d\n",soldierNumber);
+            }
+        }
     }
 
     public Checkerboard() {

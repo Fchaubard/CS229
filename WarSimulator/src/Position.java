@@ -16,10 +16,15 @@ public class Position {
         this.y = y;
         this.angle = angle;
     }
+    public Position(Position another) {
+        this.x = another.getX();
+        this.y = another.getY();
+        this.angle = another.getAngle();
+    }
 
     //methods
     public int getX() {
-        return x;
+        return this.x;
     }
 
     public void setX(int x) {
@@ -27,7 +32,7 @@ public class Position {
     }
 
     public int getY() {
-        return y;
+        return this.y;
     }
 
     public void setY(int y) {
@@ -35,7 +40,7 @@ public class Position {
     }
 
     public int getAngle() {
-        return angle;
+        return this.angle;
     }
 
     public void setAngle(int angle) {
