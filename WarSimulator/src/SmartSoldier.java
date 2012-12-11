@@ -99,7 +99,6 @@ public class SmartSoldier implements Soldier{
         //Update state
         currentStateKey = this.calculateLocalStateKey(soldiers);
 
-
         //Learn from experience if not first play of the game
         if (!previousStateKey.equals(""))
         {
@@ -111,7 +110,6 @@ public class SmartSoldier implements Soldier{
         this.previousChoice = newChoice;
         this.previousStateKey = this.currentStateKey;
         this.traces.addTrace(this.previousStateKey,this.previousChoice);  //This was missing before
-
 
         return this.convertChoiceToPosition(newChoice);
 
@@ -188,10 +186,11 @@ public class SmartSoldier implements Soldier{
 
 
         }
-
-        if(!jumpingOverEdge&&(newPosition.getAngle()==position.getAngle())&&(newPosition.getX()==position.getX())&&(newPosition.getY()==position.getY())&&choice!=0) {
+        // just a check.. if its not jumping over the edge, old pos is equal to new pos, and the choice is not 0.. thats not good
+        if(!jumpingOverEdge && (newPosition.getAngle()==position.getAngle()) && (newPosition.getX()==position.getX()) && (newPosition.getY()==position.getY())&&choice!=0) {
             System.out.print("big issue");
         }
+
         // Submit the newPosition
         return newPosition;
     }
@@ -228,8 +227,9 @@ public class SmartSoldier implements Soldier{
 
             if (potentialMoves.size()!=4)
                 a=1;     //for debugging purposes
-            if (max>1.0){
-                a=1;   //for debugging purposes
+
+            if (max.doubleValue()>1.0){
+                a=1;   //for debugging purposes         also good.. means its
             }
             //System.out.printf("actionValue 0=%f, 1=%f, 2=%f, 3=%f \n\n", actionValues[0],actionValues[1],actionValues[2],actionValues[3]);
 

@@ -19,7 +19,7 @@ public class DumbSoldier implements Soldier {
     private int sizeOfEnvironmentX;
     private int sizeOfEnvironmentY;
     private Q qMatrix = new Q();
-    private boolean reallyDumb=true;
+    private boolean reallyDumb=false;
 
     public DumbSoldier(int identifier, int teamIdentifier, Position position, int sizeOfEnvironmentX, int sizeOfEnvironmentY) {
         this.setIdentifier(identifier);

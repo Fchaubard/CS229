@@ -21,9 +21,9 @@ public class Environment {
     private GameState currentPositions;
     private RoundRewards currentRewards;
     private static double rewardForHurting                 = 1.0;
-    private static double rewardForBeingOnTeamOfHurting    = 0.5;
+    private static double rewardForBeingOnTeamOfHurting    = 0.0;
     private static double rewardForHurt                    = -1.0;
-    private static double rewardForBeingOnTeamOfHurt       = -0.5;
+    private static double rewardForBeingOnTeamOfHurt       = -0.0;
 
     public Environment(int numberOfTeams, int numberOfSoldiersPerTeam, Soldier[] initial_Soldiers, int stepLimit, int sizeOfEnvironmentX, int sizeOfEnvironmentY, double inactivityPunishment) {
         this.setCurrentStep(-1);
@@ -169,17 +169,18 @@ public class Environment {
 
 
         //ensure that no positions are equal, this issue was popping up before
-        for (int i=0; i<soldiers.length; i++){
+        /*for (int i=0; i<soldiers.length; i++){
             for (int j=0; j<soldiers.length; j++){
                 if(i!=j){
                     if(arePositionsEqual(soldiers[i].getPosition(),soldiers[j].getPosition())){
 
 
                         System.out.print("soldiers positions are overlapping\n");
+
                     }
                 }
             }
-        }
+        }       */
 
         // Step the game by 1
         this.setCurrentStep(this.getCurrentStep()+1);
@@ -200,17 +201,17 @@ public class Environment {
         // Do move rectification
         moveRectification(moveList);
 
-        for (int i=0; i<soldiers.length; i++){
+        /*for (int i=0; i<soldiers.length; i++){
             for (int j=0; j<soldiers.length; j++){
                 if(i!=j){
                     if(arePositionsEqual(moveList.get(i),moveList.get(j))){
                        System.out.print("move list positions are overlapping\n");
-                           i=1231;
+                       i=1231;
 
                     }
                 }
             }
-        }
+        }     */
 
         // Commit Moves
         for (int i=0; i<soldiers.length; i++){
@@ -234,54 +235,80 @@ public class Environment {
     }
 
     public ArrayList arePositionsUnique(ArrayList<Position> list){
-        boolean positionsArentEqual=false;
+        boolean positionsAreEqual=true;
+        int counter = 0;
+        while(positionsAreEqual){
+            // ensure the positions arent equal by putting them into a set
+            for (int i=0; i<list.size(); i++){
+                for (int j=0; j<list.size(); j++){
+                    if(i!=j){
+                        Position ai = list.get(i);
+                        Position aj = list.get(j);
 
-        // ensure the positions arent equal by putting them into a set
-        for (int i=0; i<list.size(); i++){
-            for (int j=0; j<i; j++){
-                if(i!=j){
-                    Position ai = list.get(i);
-                    Position aj = list.get(j);
+                        if(arePositionsEqual(ai,aj)){
+                            boolean isAiMoving = !arePositionsEqual(ai,getSoldier(i).getPosition()); //yes if soldier i is moving
+                            boolean isAjMoving = !arePositionsEqual(aj,getSoldier(j).getPosition());
 
-                    if(arePositionsEqual(ai,aj)){
-                        boolean isAiMoving = !arePositionsEqual(ai,getSoldier(i).getPosition()); //yes if soldier i is moving
-                        boolean isAjMoving = !arePositionsEqual(aj,getSoldier(j).getPosition());
-
-                        // not moving takes precedence over someone moving into another!
-                        //System.out.printf("conflict with S%d and S%d \n\n",i,j);
-                        Random random = new Random();
-                        int whogetsit = random.nextInt(1);  // gives either a 0, 1, 2, or 3
-                        // when they are both moving
-                        if(isAiMoving && isAjMoving){
-                            if(whogetsit==0){
-                                // Randomly give it to ai
-                                list.set(i,ai);
-                                list.set(j,getSoldier(j).getPosition());   //keep at current position
-                            }else if(whogetsit==1){
-                                // Randomly give it to aj
-                                list.set(j,aj);
-                                list.set(i,getSoldier(i).getPosition());  //keep at current position
-                            }else{
-                                System.out.print("issue with random");
+                            // not moving takes precedence over someone moving into another!
+                            //System.out.printf("conflict with S%d and S%d \n\n",i,j);
+                            Random random = new Random();
+                            int whogetsit = random.nextInt(1);  // gives either a 0, 1, 2, or 3
+                            // when they are both moving
+                            if(isAiMoving && isAjMoving){
+                                if(whogetsit==0){
+                                    // Randomly give it to ai
+                                    list.set(i,ai);
+                                    list.set(j,getSoldier(j).getPosition());   //keep at current position
+                                }else if(whogetsit==1){
+                                    // Randomly give it to aj
+                                    list.set(j,aj);
+                                    list.set(i,getSoldier(i).getPosition());  //keep at current position
+                                }else{
+                                    System.out.print("issue with random");
+                                }
                             }
-                        }
-                        else if((isAiMoving && !isAjMoving)){       // when only j is moving
+                            else if((isAiMoving && !isAjMoving)){       // when only j is moving
 
-                            list.set(i,getSoldier(i).getPosition());   //keep at current position
+                                list.set(i,getSoldier(i).getPosition());   //keep at current position
 
-                        }else if((!isAiMoving && isAjMoving)){       // when only j is moving
+                            }else if((!isAiMoving && isAjMoving)){       // when only j is moving
 
-                            list.set(j,getSoldier(j).getPosition());   //keep at current position
+                                list.set(j,getSoldier(j).getPosition());   //keep at current position
 
-                        }
-                        else{
-                            System.out.print("already at same position, not good");
+                            }
+                            else{
+                                System.out.print("already at same position, not good");
+                            }
                         }
                     }
                 }
             }
+            if(counter>2)
+                System.out.printf("counter = %d\n",counter);
 
+            counter+=1;
+
+            outerLoop:
+            //ensure that no positions are equal, this issue was popping up before
+            for (int i=0; i<soldiers.length; i++){
+                for (int j=0; j<soldiers.length; j++){
+                    if(i!=j){
+                        if(arePositionsEqual(list.get(i),list.get(j))){
+
+                            positionsAreEqual=true;
+                            System.out.printf("S%d and S%d\n",i, j);
+                            break outerLoop;
+
+                        }else{
+                            positionsAreEqual=false;
+
+                        }
+                    }
+                }
+            }
         }
+
+
 
         return list;
     }

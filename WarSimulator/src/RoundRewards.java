@@ -53,9 +53,10 @@ public class RoundRewards {
 
     public void punishInactivity(Double uniformPunishment)
     {
-        for(Double a: this.rewards)
+        for(int i=0; i<rewards.size(); i++)
         {
-              a-=uniformPunishment;
+            rewards.set(i, rewards.get(i)-uniformPunishment);
+
         }
     }
 }

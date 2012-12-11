@@ -9,15 +9,15 @@ public class Checkerboard {
     private static CheckerboardPanel panel;
     private static Environment environment;
     private static int numberOfTeams=2;
-    private static int numberOfSoldiersPerTeam=1;
+    private static int numberOfSoldiersPerTeam=2;
     private static int stepLimit=10;
     private static int sizeOfEnvironmentX=5;
     private static int sizeOfEnvironmentY=5;
-    private static int numberOfGames=70000;
+    private static int numberOfGames=90000;
     private static boolean gameOver=false;
     private static boolean showCheckerBoard=false;
     private static Position referencePosition = new Position(0,0,0);
-    private static int gameStyle=1;   //1 dumb v dumb 2 smart v dumb 3 smart v smart
+    private static int gameStyle=2;   //1 dumb v dumb 2 smart v dumb 3 smart v smart
 
     private static double lambda = 0.5;
     private static double gamma = 0.9;
@@ -126,7 +126,7 @@ public class Checkerboard {
 
         System.out.printf("\nPrinting Qs: \n");
 
-        for (int soldierNumber=0; soldierNumber<environment.getSoldiers().length; soldierNumber++){
+        /*for (int soldierNumber=0; soldierNumber<environment.getSoldiers().length; soldierNumber++){
             try{
 
                 Q q = environment.getSoldier(soldierNumber).getQMatrix();
@@ -142,6 +142,7 @@ public class Checkerboard {
                 System.out.printf("probably a dumb soldier %d\n",soldierNumber);
             }
         }
+        */
         for (int soldierNumber=0; soldierNumber<environment.getSoldiers().length; soldierNumber++){
             try{
                 Q q = new Q();
@@ -184,7 +185,7 @@ public class Checkerboard {
                     soldier = new DumbSoldier((i+j*(numberOfSoldiersPerTeam)),j,pos, sizeOfEnvironmentX, sizeOfEnvironmentY);
                 }
                 else if(gameStyle==2){    // dumb vs smart soldiers
-                    if(j==0)
+                    if(j==1)
                         soldier = new DumbSoldier((i+j*(numberOfSoldiersPerTeam)),j,pos, sizeOfEnvironmentX, sizeOfEnvironmentY);
                     else
                         soldier = new SmartSoldier((i+j*(numberOfSoldiersPerTeam)),j, pos, sizeOfEnvironmentX, sizeOfEnvironmentY, referencePosition, lambda, gamma,learningRate, epsilon);
